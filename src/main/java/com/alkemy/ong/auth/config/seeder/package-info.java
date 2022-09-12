@@ -1,0 +1,1 @@
+package com.alkemy.ong.auth.config.seeder;
