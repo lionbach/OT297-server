@@ -10,12 +10,12 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "news")
+@Table(name = "activities")
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE news SET deleted = true where id=?")
-@Where(clause = "deleted=false")
-public class NewsEntity {
+@SQLDelete(sql = "UPDATE activities SET deleter = true WHERE id = ?")
+@Where(clause = "deleted = false")
+public class ActivityEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,13 +36,6 @@ public class NewsEntity {
 
     @Column(name = "deleted", nullable = false)
     private boolean deleted = Boolean.FALSE;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id", insertable = false, updatable = false)
-    private CategoryEntity category;
-
-    @Column(name = "category_id", nullable = false)
-    private Long categoryId;
 
     @PrePersist
     void persist() {

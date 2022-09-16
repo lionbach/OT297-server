@@ -36,4 +36,9 @@ public class CategoryEntity {
 
     @Column(name = "deleted", nullable = false)
     private boolean deleted = Boolean.FALSE;
+
+    @PrePersist
+    void persist() {
+        setTimestamps(LocalDateTime.now());
+    }
 }
