@@ -11,13 +11,13 @@ import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name="organizations")
+@Table(name="members")
 @Setter
 @Getter
 @SQLDelete(sql = "UPDATE organizations SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
 
-public class OrganizationsEntity {
+public class MembersEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -27,24 +27,17 @@ public class OrganizationsEntity {
     @Column(nullable = false)
     private String name;
 
+    private String facebookUrl;
+
+    private String instagramUrl;
+
+    private String linkedinUrl;
+
     @NotNull
     @Column(nullable = false)
     private String image;
 
-    private String address;
-
-    private Integer phone;
-
-    @NotNull
-    @Column(nullable = false)
-    private String email;
-
-    @NotNull
-    @Column(nullable = false, columnDefinition="TEXT")
-    private String welcomeText;
-
-    @Column(columnDefinition="TEXT")
-    private String aboutUsText;
+    private String description;
 
     private boolean deleted = Boolean.FALSE;
 
@@ -54,3 +47,20 @@ public class OrganizationsEntity {
     private Timestamp timestamps;
 
 }
+
+
+/*
+COMO desarrollador
+QUIERO agregar la entidad Member
+PARA representar en la implementación la estructura de datos
+
+Criterios de aceptación:
+Nombre de tabla: members. Campos:
+name: VARCHAR NOT NULL
+facebookUrl: VARCHAR NULLABLE
+instagramUrl: VARCHAR NULLABLE
+linkedinUrl: VARCHAR NULLABLE
+image: VARCHAR NOT NULL
+description: VARCHAR NULLABLE
+timestamps y softDelete
+ */
