@@ -7,6 +7,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,7 +25,7 @@ public class NewsEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "content", nullable = false)
+    @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
 
     @Column(name = "image", nullable = false)
@@ -32,7 +33,7 @@ public class NewsEntity {
 
     @Column(name = "timestamps", nullable = false)
     @CreationTimestamp
-    private LocalDateTime timestamps;
+    private Timestamp timestamps;
 
     @Column(name = "deleted", nullable = false)
     private boolean deleted = Boolean.FALSE;
@@ -44,8 +45,8 @@ public class NewsEntity {
     @Column(name = "category_id", nullable = false)
     private Long categoryId;
 
-    @PrePersist
-    void persist() {
-        setTimestamps(LocalDateTime.now());
-    }
+//    @PrePersist
+//    void persist() {
+//        setTimestamps(LocalDateTime.now());
+//    }
 }

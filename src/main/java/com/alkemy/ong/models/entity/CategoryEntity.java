@@ -7,6 +7,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -32,13 +33,13 @@ public class CategoryEntity {
 
     @Column(name = "timestamps", nullable = false)
     @CreationTimestamp
-    private LocalDateTime timestamps;
+    private Timestamp timestamps;
 
     @Column(name = "deleted", nullable = false)
     private boolean deleted = Boolean.FALSE;
 
-    @PrePersist
-    void persist() {
-        setTimestamps(LocalDateTime.now());
-    }
+//    @PrePersist
+//    void persist() {
+//        setTimestamps(LocalDateTime.now());
+//    }
 }
