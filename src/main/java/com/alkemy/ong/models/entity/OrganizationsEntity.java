@@ -48,7 +48,6 @@ public class OrganizationsEntity {
 
     private boolean deleted = Boolean.FALSE;
 
-    @NotNull
     @Column(nullable = false)
     @CreationTimestamp
     private Timestamp timestamps;
