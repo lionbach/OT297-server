@@ -2,6 +2,8 @@ package com.alkemy.ong.models.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -10,8 +12,10 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @Setter
-@Table(name = "Testimonial")
-public class Testimonial {
+@Table(name = "testimonial")
+@SQLDelete(sql = "UPDATE testimonial SET soft_delete = true where id=?")
+@Where(clause = "soft_delete=false")
+public class TestimonialEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +34,9 @@ public class Testimonial {
     @Column(name = "timestamp")
     private Timestamp timestamp;
 
-    @Column(name = "softDelete")
-    private Boolean softDelete;
+    @Column(name = "soft_delete", nullable = false)
+    private Boolean softDelete = Boolean.FALSE;
 
-    public Testimonial() {
+    public TestimonialEntity() {
     }
 }

@@ -5,13 +5,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.security.Timestamp;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "role")
-public class Role {
+public class RoleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +25,4 @@ public class Role {
 
     @Column(name = "timestamp")
     private Timestamp timestamp;
-
-    public Role() {
-    }
-
 }

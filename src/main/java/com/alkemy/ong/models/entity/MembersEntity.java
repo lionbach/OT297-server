@@ -14,9 +14,8 @@ import java.sql.Timestamp;
 @Table(name="members")
 @Setter
 @Getter
-@SQLDelete(sql = "UPDATE organizations SET deleted = true WHERE id=?")
+@SQLDelete(sql = "UPDATE members SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
-
 public class MembersEntity {
 
     @Id
@@ -39,6 +38,7 @@ public class MembersEntity {
 
     private String description;
 
+    @Column(name = "deleted", nullable = false)
     private boolean deleted = Boolean.FALSE;
 
     @Column(nullable = false)

@@ -16,7 +16,6 @@ import java.sql.Timestamp;
 @Getter
 @SQLDelete(sql = "UPDATE organizations SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
-
 public class OrganizationsEntity {
 
     @Id
