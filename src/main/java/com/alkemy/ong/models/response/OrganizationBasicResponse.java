@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class OrganizationsBasicResponse {
+public class OrganizationBasicResponse {
     private Long id;
     private String name;
     private String image;

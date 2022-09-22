@@ -11,12 +11,12 @@ import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name="members")
+@Table(name = "members")
 @Setter
 @Getter
 @SQLDelete(sql = "UPDATE members SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
-public class MembersEntity {
+public class MemberEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -41,8 +41,7 @@ public class MembersEntity {
     @Column(name = "deleted", nullable = false)
     private boolean deleted = Boolean.FALSE;
 
-    @Column(nullable = false)
+    @Column(name = "timestamps", nullable = false)
     @CreationTimestamp
     private Timestamp timestamps;
-
 }

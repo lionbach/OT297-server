@@ -6,12 +6,14 @@ import com.alkemy.ong.models.request.UserRequest;
 import com.alkemy.ong.models.response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
+@Component
 public class UserMapper {
-    @Autowired
-    private PasswordEncoder encoder;
+//    @Autowired
+//    private PasswordEncoder encoder;
 
     public UserResponse userEntity2UserResponse(UserEntity userEntity, String token) {
         UserResponse userResponse = new UserResponse();
@@ -29,7 +31,7 @@ public class UserMapper {
         userEntity.setFirstName(userRequest.getFirstName());
         userEntity.setLastName(userRequest.getLastName());
         userEntity.setEmail(userRequest.getEmail());
-        userEntity.setPassword(encoder.encode(userRequest.getPassword()));
+//        userEntity.setPassword(encoder.encode(userRequest.getPassword()));
         userEntity.setRoleEntityId(role);
         return userEntity;
     }

@@ -1,14 +1,11 @@
-package com.alkemy.ong.models.response;
+package com.alkemy.ong.models.request;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.Timestamp;
-
 @Getter
 @Setter
-public class OrganizationsResponse {
-    private Long id;
+public class OrganizationRequest {
     private String name;
     private String image;
     private String address;
@@ -16,5 +13,4 @@ public class OrganizationsResponse {
     private String email;
     private String welcomeText;
     private String aboutUsText;
-    private Timestamp timestamps;
 }

@@ -1,15 +1,15 @@
 package com.alkemy.ong.models.mapper;
 
-import com.alkemy.ong.models.request.OrganizationsRequest;
-import com.alkemy.ong.models.response.OrganizationsBasicResponse;
-import com.alkemy.ong.models.entity.OrganizationsEntity;
-import com.alkemy.ong.models.response.OrganizationsResponse;
+import com.alkemy.ong.models.request.OrganizationRequest;
+import com.alkemy.ong.models.response.OrganizationBasicResponse;
+import com.alkemy.ong.models.entity.OrganizationEntity;
+import com.alkemy.ong.models.response.OrganizationResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OrganizationsMapper {
-    public static OrganizationsEntity organizationsRequest2OrganizationsEntity(OrganizationsRequest organization) {
-        OrganizationsEntity entity = new OrganizationsEntity();
+public class OrganizationMapper {
+    public static OrganizationEntity organizationsRequest2OrganizationsEntity(OrganizationRequest organization) {
+        OrganizationEntity entity = new OrganizationEntity();
         entity.setName(organization.getName());
         entity.setImage(organization.getImage());
         entity.setAddress(organization.getAddress());
@@ -20,8 +20,8 @@ public class OrganizationsMapper {
         return entity;
     }
 
-    public OrganizationsBasicResponse organizationsEntity2OrganizationsBasicResponse(OrganizationsEntity entity) {
-        OrganizationsBasicResponse response = new OrganizationsBasicResponse();
+    public OrganizationBasicResponse organizationsEntity2OrganizationsBasicResponse(OrganizationEntity entity) {
+        OrganizationBasicResponse response = new OrganizationBasicResponse();
         response.setId(entity.getId());
         response.setName(entity.getName());
         response.setImage(entity.getImage());
@@ -30,8 +30,8 @@ public class OrganizationsMapper {
         return response;
     }
 
-    public OrganizationsResponse organizationsEntity2OrganizationsResponse(OrganizationsEntity savedEntity) {
-        OrganizationsResponse response = new OrganizationsResponse();
+    public OrganizationResponse organizationsEntity2OrganizationsResponse(OrganizationEntity savedEntity) {
+        OrganizationResponse response = new OrganizationResponse();
         response.setId(savedEntity.getId());
         response.setName(savedEntity.getName());
         response.setImage(savedEntity.getImage());

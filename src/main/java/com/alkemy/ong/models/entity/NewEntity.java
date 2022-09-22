@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 @Setter
 @SQLDelete(sql = "UPDATE news SET deleted = true where id=?")
 @Where(clause = "deleted=false")
-public class NewsEntity {
+public class NewEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

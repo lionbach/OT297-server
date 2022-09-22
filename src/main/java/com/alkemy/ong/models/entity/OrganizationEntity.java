@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 @Getter
 @SQLDelete(sql = "UPDATE organizations SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
-public class OrganizationsEntity {
+public class OrganizationEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -47,8 +47,7 @@ public class OrganizationsEntity {
 
     private boolean deleted = Boolean.FALSE;
 
-    @Column(nullable = false)
+    @Column(name = "timestamps", nullable = false)
     @CreationTimestamp
     private Timestamp timestamps;
-
 }
