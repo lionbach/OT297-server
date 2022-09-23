@@ -34,7 +34,7 @@ public class UserSeeder implements CommandLineRunner {
     }
 
     private void loadSeedersUsers(){
-        LOOGER.log(Level.INFO, "iniciando seeder");
+        LOOGER.log(Level.INFO, "Inicializing seeder");
         Set<RoleEntity> roleAdmin = roleRepository.findByName(RoleEnum.ADMIN.getFullRoleName());
         Set<RoleEntity> roleUser = roleRepository.findByName(RoleEnum.USER.getFullRoleName());
 
