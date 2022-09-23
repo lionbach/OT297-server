@@ -59,13 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //auth
                 .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/register").permitAll()
-
+                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 // only for test
                 .antMatchers(HttpMethod.POST, "/organization/public").permitAll()
                 .antMatchers(HttpMethod.GET, "/organization/public").permitAll()
-
-
-
 
                 /*agregar autorizaciones a los endpoints pendientes en desarrollo
 

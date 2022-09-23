@@ -12,7 +12,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @Getter
 @Setter
-public class UserRequest {
+public class UserRegisterRequest {
     @NonNull
     @NotEmpty(message = "the name can't be null")
     @NotBlank(message = "the name can't  be blank")

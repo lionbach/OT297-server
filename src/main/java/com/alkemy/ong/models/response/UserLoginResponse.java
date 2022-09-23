@@ -1,15 +1,13 @@
 package com.alkemy.ong.models.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+@AllArgsConstructor
 @Getter
 @Setter
-public class UserResponse {
-    private Long id;
-    private String firstName;
-    private String lastName;
+public class UserLoginResponse {
     private String email;
-    private String password;
     private String token;
 }

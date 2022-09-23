@@ -1,6 +1,7 @@
 package com.alkemy.ong.models.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "user")
 @SQLDelete(sql = "UPDATE user SET soft_delete = true where id=?")
 @Where(clause = "soft_delete=false")
@@ -50,15 +52,10 @@ public class UserEntity {
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<RoleEntity> roleEntityId;
 
-
-    public UserEntity() {
-
-    }
-//saque el softdelete y el id por parametros para hacer el seeder, esto es correcto o
+    //saque el softdelete y el idUser por parametros para hacer el seeder, esto es correcto o
     // tengo que agregarlos nuevamente y pasarselo al seeder de user?
-    public UserEntity( String firstName, String lastName, String email, String password, String photo,
-                      Timestamp timestamp,  Set<RoleEntity> roleEntity) {
-
+    public UserEntity(String firstName, String lastName, String email, String password, String photo,
+                      Timestamp timestamp, Set<RoleEntity> roleEntity) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -67,6 +64,4 @@ public class UserEntity {
         this.timestamp = timestamp;
         this.roleEntityId = roleEntity;
     }
-
-
 }
