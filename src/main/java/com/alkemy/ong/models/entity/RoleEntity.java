@@ -1,15 +1,15 @@
 package com.alkemy.ong.models.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 @Table(name = "role")
 public class RoleEntity {
 
@@ -27,4 +27,10 @@ public class RoleEntity {
     @Column(name = "timestamp", nullable = false)
     @CreationTimestamp
     private Timestamp timestamp;
+
+    public RoleEntity(String fullRoleName, String description, Timestamp timestamp) {
+        this.setName(fullRoleName);
+        this.setDescription(description);
+        this.setTimestamp(timestamp);
+    }
 }

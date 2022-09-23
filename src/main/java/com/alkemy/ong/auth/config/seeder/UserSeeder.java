@@ -36,8 +36,14 @@ public class UserSeeder implements CommandLineRunner {
     private void loadSeedersUsers() {
         LOGGER.log(Level.INFO, "Inicializing seeder");
         if (roleRepository.findAll().isEmpty() && userRepository.findAll().isEmpty()) {
+
+            // Create Roles
+            roleRepository.save(new RoleEntity(RoleEnum.USER.getFullRoleName(),null,new Timestamp(System.currentTimeMillis())));
+            roleRepository.save(new RoleEntity(RoleEnum.ADMIN.getFullRoleName(),null,new Timestamp(System.currentTimeMillis())));
+
             Set<RoleEntity> roleAdmin = roleRepository.findByName(RoleEnum.ADMIN.getFullRoleName());
             Set<RoleEntity> roleUser = roleRepository.findByName(RoleEnum.USER.getFullRoleName());
+            // Create Users
             this.userRepository.save(new UserEntity("Guillermo", "Pintos", "pintos-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleAdmin));
             this.userRepository.save(new UserEntity("Ignacio", "Fernan", "ignacio-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleUser));
         }
