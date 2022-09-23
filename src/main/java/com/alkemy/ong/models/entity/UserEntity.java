@@ -54,18 +54,17 @@ public class UserEntity {
     public UserEntity() {
 
     }
+//saque el softdelete y el id por parametros para hacer el seeder, esto es correcto o
+    // tengo que agregarlos nuevamente y pasarselo al seeder de user?
+    public UserEntity( String firstName, String lastName, String email, String password, String photo,
+                      Timestamp timestamp,  Set<RoleEntity> roleEntity) {
 
-    public UserEntity(Long idUser, String firstName, String lastName, String email, String password, String photo,
-                      Timestamp timestamp, Boolean softDelete, Set<RoleEntity> roleEntity) {
-        super();
-        this.idUser = idUser;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.photo = photo;
         this.timestamp = timestamp;
-        this.softDelete = softDelete;
         this.roleEntityId = roleEntity;
     }
 
