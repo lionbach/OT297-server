@@ -52,8 +52,7 @@ public class UserEntity {
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<RoleEntity> roleEntityId;
 
-    //saque el softdelete y el idUser por parametros para hacer el seeder, esto es correcto o
-    // tengo que agregarlos nuevamente y pasarselo al seeder de user?
+
     public UserEntity(String firstName, String lastName, String email, String password, String photo,
                       Timestamp timestamp, Set<RoleEntity> roleEntity) {
         this.firstName = firstName;

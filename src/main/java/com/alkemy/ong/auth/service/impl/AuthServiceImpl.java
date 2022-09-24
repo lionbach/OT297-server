@@ -50,9 +50,9 @@ public class AuthServiceImpl implements AuthService {
         UserRegisterResponse userRegisterResponse = userMapper.userEntity2UserResponse(userEntity,
                 jwtTokenProvider.generateToken(authenticationManager.authenticate(
                         new UsernamePasswordAuthenticationToken(userRegisterRequest.getEmail(), userRegisterRequest.getPassword()))));
-        return null;
+        return userRegisterResponse;
     }
-
+/*EL login en el caso de ingresar un password incorrecto, tira un ok: false,pero con 200*/
     @Override
     public UserLoginResponse login(String email, String password) throws Exception {
         try {
