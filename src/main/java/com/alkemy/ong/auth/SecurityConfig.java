@@ -2,6 +2,7 @@ package com.alkemy.ong.auth;
 
 import com.alkemy.ong.auth.filter.JwtAuthenticationFilter;
 import com.alkemy.ong.service.impl.CustomUserDetailsService;
+import com.alkemy.ong.utils.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -60,9 +61,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                // only for test
+                //organization
                 .antMatchers(HttpMethod.POST, "/organization/public").permitAll()
                 .antMatchers(HttpMethod.GET, "/organization/public").permitAll()
+                //users
+                .antMatchers(HttpMethod.GET, "/users").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
 
                 /*agregar autorizaciones a los endpoints pendientes en desarrollo
 

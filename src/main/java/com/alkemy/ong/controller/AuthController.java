@@ -35,7 +35,6 @@ public class AuthController {
     @GetMapping("/me")
     public ResponseEntity<UserResponse> getUser(@RequestHeader(name = "Authorization") String token) {
         System.out.println(token);
-
         return ResponseEntity.status(HttpStatus.OK).body(authService.userAuth(token));
     }
 }

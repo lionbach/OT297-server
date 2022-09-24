@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "c6b53e9b-99d8-41b0-9929-a1a6b35d89e7",
-		"name": "ONG",
+		"_postman_id": "a90b1e0e-634b-48c5-b3df-d0aa8a454156",
+		"name": "Auth",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19074528"
+		"_exporter_id": "22500799"
 	},
 	"item": [
 		{
@@ -37,11 +37,21 @@
 		{
 			"name": "auth/login",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\r\n    \"email\" : \"pere@htomail.com\",\r\n    \"password\" : \"12345\"\r\n}",
+					"raw": "{\r\n    \"email\" : \"jon-email@gmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -16,7 +18,7 @@ public class UserMapper {
     @Autowired
     private PasswordEncoder encoder;
 
-    public UserRegisterResponse userEntity2UserResponse(UserEntity userEntity, String token) {
+    public UserRegisterResponse userEntity2UserRegisterResponse(UserEntity userEntity, String token) {
         UserRegisterResponse userRegisterResponse = new UserRegisterResponse();
         userRegisterResponse.setId(userEntity.getIdUser());
         userRegisterResponse.setFirstName(userEntity.getFirstName());
@@ -27,7 +29,7 @@ public class UserMapper {
         return userRegisterResponse;
     }
 
-    public UserEntity userRequest2UserEntity(UserRegisterRequest userRegisterRequest, Set<RoleEntity> role) {
+    public UserEntity userRegisterRequest2UserEntity(UserRegisterRequest userRegisterRequest, Set<RoleEntity> role) {
         UserEntity userEntity = new UserEntity();
         userEntity.setFirstName(userRegisterRequest.getFirstName());
         userEntity.setLastName(userRegisterRequest.getLastName());
@@ -37,7 +39,7 @@ public class UserMapper {
         return userEntity;
     }
 
-    public UserResponse convertTo(UserEntity user){
+    public UserResponse userEntity2UserResponse(UserEntity user) {
         return UserResponse.builder()
                 .email(user.getEmail())
                 .firstName(user.getFirstName())
@@ -45,5 +47,13 @@ public class UserMapper {
                 .photo(user.getPhoto())
                 .id(user.getIdUser())
                 .build();
+    }
+
+    public List<UserResponse> userEntityList2UserResponseList(List<UserEntity> userEntities) {
+        List<UserResponse> userResponseList = new ArrayList<>();
+        for (UserEntity entity : userEntities) {
+            userResponseList.add(userEntity2UserResponse(entity));
+        }
+        return userResponseList;
     }
 }

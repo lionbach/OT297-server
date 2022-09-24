@@ -49,9 +49,9 @@ public class AuthServiceImpl implements AuthService {
         if (roleEntities.isEmpty()) {
             throw new NullPointerException();
         }
-        UserEntity userEntity = userMapper.userRequest2UserEntity(userRegisterRequest, roleEntities);
+        UserEntity userEntity = userMapper.userRegisterRequest2UserEntity(userRegisterRequest, roleEntities);
         userEntity = userRepository.save(userEntity);
-        UserRegisterResponse userRegisterResponse = userMapper.userEntity2UserResponse(userEntity,
+        UserRegisterResponse userRegisterResponse = userMapper.userEntity2UserRegisterResponse(userEntity,
                 jwtTokenProvider.generateToken(authenticationManager.authenticate(
                         new UsernamePasswordAuthenticationToken(userRegisterRequest.getEmail(), userRegisterRequest.getPassword()))));
         return userRegisterResponse;
@@ -73,9 +73,8 @@ public class AuthServiceImpl implements AuthService {
     public UserResponse userAuth(String token) {
         token = token.replace("Bearer ", "");
         String email = jwtTokenProvider.getJWTUsername(token);
-
         UserEntity userEntity = userRepository.findByEmail(email).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "the searched user does not exist"));
-        return userMapper.convertTo(userEntity);
+        return userMapper.userEntity2UserResponse(userEntity);
     }
 }

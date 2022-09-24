@@ -38,8 +38,8 @@ public class UserSeeder implements CommandLineRunner {
         if (roleRepository.findAll().isEmpty() && userRepository.findAll().isEmpty()) {
 
             // Create Roles
-            roleRepository.save(new RoleEntity(RoleEnum.USER.getFullRoleName(),null,new Timestamp(System.currentTimeMillis())));
-            roleRepository.save(new RoleEntity(RoleEnum.ADMIN.getFullRoleName(),null,new Timestamp(System.currentTimeMillis())));
+            roleRepository.save(new RoleEntity(RoleEnum.USER.getFullRoleName(), null, new Timestamp(System.currentTimeMillis())));
+            roleRepository.save(new RoleEntity(RoleEnum.ADMIN.getFullRoleName(), null, new Timestamp(System.currentTimeMillis())));
 
             Set<RoleEntity> roleAdmin = roleRepository.findByName(RoleEnum.ADMIN.getFullRoleName());
             Set<RoleEntity> roleUser = roleRepository.findByName(RoleEnum.USER.getFullRoleName());
@@ -52,9 +52,8 @@ public class UserSeeder implements CommandLineRunner {
             this.userRepository.save(new UserEntity("Erika", "Strumbergert", "erica-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleAdmin));
             this.userRepository.save(new UserEntity("Florencia", "Bianqueri", "florencia-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleAdmin));
             this.userRepository.save(new UserEntity("Pablo", "Silva", "pablo-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleAdmin));
-            this.userRepository.save(new UserEntity("Micaela", "Barragan", "micaela-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleAdmin));
-            this.userRepository.save(new UserEntity("Isaac", "Silva", "isaac-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleAdmin));
-
+            this.userRepository.save(new UserEntity("Eddard", "Stark", "eddard-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleAdmin));
+            this.userRepository.save(new UserEntity("Jon", "Nieve", "jon-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleAdmin));
 
             this.userRepository.save(new UserEntity("Gisel", "Zoto", "gisel-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleUser));
             this.userRepository.save(new UserEntity("Ruth", "Solis", "ruth-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleUser));
@@ -63,10 +62,9 @@ public class UserSeeder implements CommandLineRunner {
             this.userRepository.save(new UserEntity("Diana", "Di Stefano", "diana-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleUser));
             this.userRepository.save(new UserEntity("Ariel", "Alvarez", "ariel-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleUser));
             this.userRepository.save(new UserEntity("Claudio", "Matuk", "claudio-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleUser));
-            this.userRepository.save(new UserEntity("Mariano", "Peralta", "mariano-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleUser));
-            this.userRepository.save(new UserEntity("Carolina", "Pintos", "carolina-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleUser));
-            this.userRepository.save(new UserEntity("Yoel", "Silva", "yoel-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleUser));
-
+            this.userRepository.save(new UserEntity("Elton", "John", "elton-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleUser));
+            this.userRepository.save(new UserEntity("Tyrion", "Lannister", "tyrion-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleUser));
+            this.userRepository.save(new UserEntity("Daenerys", "Targaryen", "daenerys-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleUser));
         }
     }
 }

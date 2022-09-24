@@ -1,0 +1,34 @@
+{
+	"info": {
+		"_postman_id": "fdbc0a2a-259f-4a6f-9b04-72c58580a792",
+		"name": "Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22500799"
+	},
+	"item": [
+		{
+			"name": "users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb24tZW1haWxAZ21haWwuY29tIiwiaWF0IjoxNjY0MDQ1NzI5LCJleHAiOjE2NjQxMDYyMDl9.a3xrm1oVimFpQcv-M_aqDdRGCAua4MvQ5MHApu1A1vIUaroPcjzvYfo-GgwSrrRRbyuICVouvwhlCJsjXR8ISA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}users",
+					"host": [
+						"{{base_url}}users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
