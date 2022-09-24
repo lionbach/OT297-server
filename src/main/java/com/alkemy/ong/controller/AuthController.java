@@ -5,6 +5,7 @@ import com.alkemy.ong.models.request.UserLoginRequest;
 import com.alkemy.ong.models.request.UserRegisterRequest;
 import com.alkemy.ong.models.response.UserLoginResponse;
 import com.alkemy.ong.models.response.UserRegisterResponse;
+import com.alkemy.ong.models.response.UserResponse;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,5 +32,10 @@ public class AuthController {
         return ResponseEntity.ok(authService.login(userLoginRequest.getEmail(), userLoginRequest.getPassword()));
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<UserResponse> getUser(@RequestHeader(name = "Authorization") String token) {
+        System.out.println(token);
 
+        return ResponseEntity.status(HttpStatus.OK).body(authService.userAuth(token));
+    }
 }

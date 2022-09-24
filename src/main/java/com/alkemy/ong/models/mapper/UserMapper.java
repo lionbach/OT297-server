@@ -4,6 +4,7 @@ import com.alkemy.ong.models.entity.RoleEntity;
 import com.alkemy.ong.models.entity.UserEntity;
 import com.alkemy.ong.models.request.UserRegisterRequest;
 import com.alkemy.ong.models.response.UserRegisterResponse;
+import com.alkemy.ong.models.response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -34,5 +35,15 @@ public class UserMapper {
         userEntity.setPassword(encoder.encode(userRegisterRequest.getPassword()));
         userEntity.setRoleEntityId(role);
         return userEntity;
+    }
+
+    public UserResponse convertTo(UserEntity user){
+        return UserResponse.builder()
+                .email(user.getEmail())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .photo(user.getPhoto())
+                .id(user.getIdUser())
+                .build();
     }
 }
