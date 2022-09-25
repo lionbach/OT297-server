@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Juan\",\r\n    \"lastName\" : \"Perez\",\r\n    \"email\" : \"pere@htomail.com\",\r\n    \"password\" : \"12345\"\r\n}",
+							"raw": "{\r\n    \"firstName\" : \"Juan\",\r\n    \"lastName\" : \"Perez\",\r\n    \"email\" : \"perez@hotmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -201,6 +201,34 @@
 							]
 						},
 						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users (User)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "InsertToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
 						"header": [],
 						"url": {
 							"raw": "localhost:8080/users",

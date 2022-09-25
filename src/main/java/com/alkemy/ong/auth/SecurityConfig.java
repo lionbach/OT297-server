@@ -65,6 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/organization/public").permitAll()
                 //users
                 .antMatchers(HttpMethod.GET, "/users").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
+                .antMatchers(HttpMethod.DELETE, "/users").hasRole(RoleEnum.USER.getSimpleRoleName())
 
                 /*agregar autorizaciones a los endpoints pendientes en desarrollo
 

@@ -22,8 +22,8 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, name = "id_user")
-    private Long idUser;
+    @Column(unique = true)
+    private Long id;
     @Column(nullable = false, name = "first_name")
     private String firstName;
 
@@ -48,7 +48,7 @@ public class UserEntity {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "user_role",
-            joinColumns = {@JoinColumn(name = "user_id")},
+            joinColumns = {@JoinColumn(name = "id_user")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<RoleEntity> roleEntityId;
 

@@ -20,7 +20,7 @@ public class UserMapper {
 
     public UserRegisterResponse userEntity2UserRegisterResponse(UserEntity userEntity, String token) {
         UserRegisterResponse userRegisterResponse = new UserRegisterResponse();
-        userRegisterResponse.setId(userEntity.getIdUser());
+        userRegisterResponse.setId(userEntity.getId());
         userRegisterResponse.setFirstName(userEntity.getFirstName());
         userRegisterResponse.setLastName(userEntity.getLastName());
         userRegisterResponse.setEmail(userEntity.getEmail());
@@ -45,7 +45,7 @@ public class UserMapper {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .photo(user.getPhoto())
-                .id(user.getIdUser())
+                .id(user.getId())
                 .build();
     }
 

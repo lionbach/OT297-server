@@ -19,8 +19,8 @@ public class TestimonialEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, name = "id_testimonials")
-    private Long idTestimonials;
+    @Column(unique = true)
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;

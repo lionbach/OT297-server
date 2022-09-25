@@ -72,10 +72,17 @@ public class AuthServiceImpl implements AuthService {
     @Override
     @Transactional(readOnly = true)
     public UserResponse userAuth(String token) {
+        return userMapper.userEntity2UserResponse(getUserEntityByToken(token));
+    }
+
+    // getUserEntityByToken also is using in UserController.delete(token)
+    @Override
+    public UserEntity getUserEntityByToken(String token){
         token = token.replace("Bearer ", "");
         String email = jwtTokenProvider.getJWTUsername(token);
         UserEntity userEntity = userRepository.findByEmail(email).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "the searched user does not exist"));
-        return userMapper.userEntity2UserResponse(userEntity);
+        return userEntity;
     }
+
 }
