@@ -68,6 +68,7 @@ public class AuthServiceImpl implements AuthService {
         }
     }
 
+    // this method is used for auth/me
     @Override
     @Transactional(readOnly = true)
     public UserResponse userAuth(String token) {
