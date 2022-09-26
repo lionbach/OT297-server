@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "0ea05d1f-5d1f-4c5c-a23b-c44b2b96fc40",
+		"_postman_id": "77e9acc9-4e68-4081-a2bc-9f0c09b4aa8b",
 		"name": "OT297 Sprint 2 - Java ONG",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19677470"
+		"_exporter_id": "22500799"
 	},
 	"item": [
 		{
@@ -238,6 +238,23 @@
 							"port": "8080",
 							"path": [
 								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users/id (All)",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}users/id",
+							"host": [
+								"{{base_url}}users"
+							],
+							"path": [
+								"id"
 							]
 						}
 					},

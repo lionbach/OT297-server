@@ -5,6 +5,7 @@ import com.alkemy.ong.models.entity.UserEntity;
 import com.alkemy.ong.models.request.UserRegisterRequest;
 import com.alkemy.ong.models.response.UserRegisterResponse;
 import com.alkemy.ong.models.response.UserResponse;
+import com.alkemy.ong.models.response.UserUpdateResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -55,5 +56,15 @@ public class UserMapper {
             userResponseList.add(userEntity2UserResponse(entity));
         }
         return userResponseList;
+    }
+
+
+    public UserUpdateResponse userEntity2UserUpdateResponse(UserEntity userEntity) {
+        UserUpdateResponse userUpdateResponse = new UserUpdateResponse();
+        userUpdateResponse.setFirstName(userEntity.getFirstName());
+        userUpdateResponse.setLastName(userEntity.getLastName());
+        userUpdateResponse.setPassword(userEntity.getPassword());
+        userUpdateResponse.setPhoto(userEntity.getPhoto());
+        return userUpdateResponse;
     }
 }
