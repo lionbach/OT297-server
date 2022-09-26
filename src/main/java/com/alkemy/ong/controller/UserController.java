@@ -25,14 +25,14 @@ public class UserController {
         return ResponseEntity.ok(userService.getAll());
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete(@RequestHeader(name = "Authorization") String token) {
-        userService.delete(token);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id, @RequestHeader(name = "Authorization") String token){
+        return userService.delete(id, token);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<UserUpdateResponse> updateUser(@Valid @PathVariable Long id, @RequestBody UserUpdateRequest userUpdateRequest) throws IOException {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.update(id, userUpdateRequest));
+    public ResponseEntity<UserUpdateResponse> updateUser(@Valid @PathVariable Long id, @RequestBody UserUpdateRequest userUpdateRequest, @RequestHeader(name = "Authorization") String token) throws IOException {
+        //return ResponseEntity.status(HttpStatus.OK).body(userService.update(id, userUpdateRequest));
+        return userService.update(id, userUpdateRequest, token);
     }
 }

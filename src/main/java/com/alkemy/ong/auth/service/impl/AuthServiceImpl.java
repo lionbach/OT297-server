@@ -85,4 +85,21 @@ public class AuthServiceImpl implements AuthService {
         return userEntity;
     }
 
+    // RoleValidator
+    // return true if the user is admin
+    // or id and id of the token are the same
+    @Override
+    public boolean roleValidator(Long id, String token) {
+        UserEntity entity = getUserEntityByToken(token);
+        Long tokenId = entity.getId();
+        boolean tokenIsAdmin = false;
+        Set<RoleEntity> tokenRoles = entity.getRoleEntityId();
+        for (RoleEntity role : tokenRoles){
+            if (role.getName().equals("ROLE_ADMIN")){
+                tokenIsAdmin = true;
+            }
+        }
+        return (id.equals(tokenId) || tokenIsAdmin);
+    }
+
 }

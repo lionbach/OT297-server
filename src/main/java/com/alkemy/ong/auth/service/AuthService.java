@@ -14,4 +14,6 @@ public interface AuthService {
     public UserResponse userAuth(String token);
 
     public UserEntity getUserEntityByToken(String token);
+
+    public boolean roleValidator(Long id, String token);
 }

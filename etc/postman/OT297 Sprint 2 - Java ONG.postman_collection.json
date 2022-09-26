@@ -1,11 +1,92 @@
 {
 	"info": {
-		"_postman_id": "77e9acc9-4e68-4081-a2bc-9f0c09b4aa8b",
+		"_postman_id": "31900724-48d3-4cd9-b17c-a4d70e39de33",
 		"name": "OT297 Sprint 2 - Java ONG",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "22500799"
+		"_exporter_id": "19677470"
 	},
 	"item": [
+		{
+			"name": "Auth examples",
+			"item": [
+				{
+					"name": "admin login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"marta-email@gmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"gisel-email@gmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Auth",
 			"item": [
@@ -16,7 +97,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\" : \"Juan\",\r\n    \"lastName\" : \"Perez\",\r\n    \"email\" : \"perez@hotmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
+							"raw": "{\r\n    \"firstName\" : \"Jhon\",\r\n    \"lastName\" : \"Example\",\r\n    \"email\" : \"jhon@example.com\",\r\n    \"password\" : \"12345\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -54,7 +135,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"jon-email@gmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"gisel-email@gmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -76,7 +157,7 @@
 					"response": []
 				},
 				{
-					"name": "auth/me",
+					"name": "auth/me (User/Admin)",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -154,8 +235,18 @@
 					"response": []
 				},
 				{
-					"name": "organization/public (All)",
+					"name": "organization/public (Admin)",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQxNjUwNjEsImV4cCI6MTY2NDIyNTU0MX0.Wx3L4e__FNbdrZj1Xobq4pt_IKDeqWa3pdHxbDgXoIJ3PXmMEFL1bqyrcIbx9u505vX_nskrEoDn6XLPPbtHxQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -216,7 +307,7 @@
 					"response": []
 				},
 				{
-					"name": "users (User)",
+					"name": "users/id (User/Admin)",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -231,30 +322,52 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/users",
+							"raw": "localhost:8080/users/20",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"users"
+								"users",
+								"20"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "users/id (All)",
+					"name": "users/id (User/Admin)",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "insertToken",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"\",\n    \"password\": null, \n    \"photo\": \"picture2/img.jpg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{base_url}}users/id",
+							"raw": "localhost:8080/users/22",
 							"host": [
-								"{{base_url}}users"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
-								"id"
+								"users",
+								"22"
 							]
 						}
 					},

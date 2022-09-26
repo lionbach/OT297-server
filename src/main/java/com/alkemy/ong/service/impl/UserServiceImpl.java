@@ -10,6 +10,8 @@ import com.alkemy.ong.models.response.UserUpdateResponse;
 import com.alkemy.ong.repository.UserRepository;
 import com.alkemy.ong.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -35,30 +37,35 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(String token) {
-        Long id = authService.getUserEntityByToken(token).getId();
-        System.out.println(id);
-        System.out.println("in UserServieImpl delete(token)");
-        userRepository.deleteById(id);
+    public ResponseEntity<Void> delete(Long id, String token) {
+        ResponseEntity<Void> response;
+        if (authService.roleValidator(id, token)){
+            userRepository.deleteById(id);
+            response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } else {
+            response = ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        return response;
     }
 
     @Override
-    public UserUpdateResponse update(Long id, UserUpdateRequest userUpdateRequest) throws IOException {
-        UserEntity userEntity = userRepository.findById(id).orElseThrow();
-        if (userUpdateRequest.getFirstName() != null && !userUpdateRequest.getFirstName().isEmpty() && !userUpdateRequest.getFirstName().isBlank()) {
-            userEntity.setFirstName(userUpdateRequest.getFirstName());
+    public ResponseEntity<UserUpdateResponse> update(Long id, UserUpdateRequest userUpdateRequest, String token) throws IOException {
+        ResponseEntity<UserUpdateResponse> response;
+        if (authService.roleValidator(id, token)){
+            UserEntity entity = userRepository.findById(id).orElseThrow();
+            if (validInput(userUpdateRequest.getFirstName())) entity.setFirstName(userUpdateRequest.getFirstName());
+            if (validInput(userUpdateRequest.getLastName())) entity.setLastName(userUpdateRequest.getLastName());
+            if (validInput(userUpdateRequest.getPassword())) entity.setPassword(userUpdateRequest.getPassword());
+            if (validInput(userUpdateRequest.getPhoto())) entity.setPhoto(userUpdateRequest.getPhoto());
+            response = ResponseEntity.status(HttpStatus.OK).body(userMapper.userEntity2UserUpdateResponse(userRepository.save(entity)));
+        } else {
+            response = ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
-        if (userUpdateRequest.getLastName() != null && !userUpdateRequest.getLastName().isEmpty() && !userUpdateRequest.getLastName().isBlank()) {
-            userEntity.setLastName(userUpdateRequest.getLastName());
-        }
-        if (userUpdateRequest.getPassword() != null && !userUpdateRequest.getPassword().isEmpty() && !userUpdateRequest.getPassword().isBlank()) {
-            userEntity.setPassword(passwordEncoder.encode(userUpdateRequest.getPassword()));
-        }
-        if (userUpdateRequest.getPhoto() != null && !userUpdateRequest.getPhoto().isEmpty() && !userUpdateRequest.getPhoto().isBlank()) {
-            userEntity.setPhoto(userUpdateRequest.getPhoto());
-        }
-        userEntity = userRepository.save(userEntity);
-        UserUpdateResponse userUpdateResponse = userMapper.userEntity2UserUpdateResponse(userEntity);
-        return userUpdateResponse;
+        return response;
     }
+
+    public boolean validInput(String input){
+        return (input != null && !input.isEmpty() && !input.isBlank());
+    }
+
 }
