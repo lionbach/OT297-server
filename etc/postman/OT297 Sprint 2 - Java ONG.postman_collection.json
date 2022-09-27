@@ -276,6 +276,49 @@
 			]
 		},
 		{
+			"name": "Slide",
+			"item": [
+				{
+					"name": "slide (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQyNDQyMzUsImV4cCI6MTY2NDMwNDcxNX0.WiTvbwXJwg5YaRwAwSil96jMeHbR4cobhmYzDPO0H0zBbXili66KrZAm_TaFJ9LwGOGfbIXUgBT3SGymWiYwGA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"imageUrl\": \"/img/picture.jpg\",\r\n    \"text\": \"my text\",\r\n    \"organizationId\": 1\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/slides",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"slides"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Users",
 			"item": [
 				{

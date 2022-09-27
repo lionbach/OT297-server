@@ -23,7 +23,7 @@ public class SlideController {
 
     @PostMapping
     public ResponseEntity<SlideResponse> create(@RequestBody @Valid SlideRequest slideRequest) throws IOException {
-        SlideResponse saveResponse = this.slideService.save(slideRequest);
+        SlideResponse saveResponse = slideService.save(slideRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(saveResponse);
     }
 

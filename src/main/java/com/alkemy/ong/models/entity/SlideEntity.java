@@ -12,11 +12,8 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "slides")
-@Builder
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @SQLDelete(sql = "UPDATE slides SET deleted = true Where id=?")
 @Where(clause = "deleted=false")
 public class SlideEntity {
@@ -27,28 +24,33 @@ public class SlideEntity {
 
     @NotNull
     @NotEmpty
-    @Column(name = "image_url")
     private String imageUrl;
 
     @NotNull
     @NotEmpty
     private String text;
 
-    @Column(name = "soft_delete")
-    @Builder.Default
-    private boolean deleted = Boolean.FALSE;
 
-    @CreationTimestamp
-    private Timestamp timestamp;
-
-    //@NotNull
+    // definos la relacion slice-organization
+    // no se va a crear esta columna en mysql
+    // la columna de la relacion la definimos despues
+    // tambien sirve para obtener, en java, los datos de la organizacion en el slice
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(
-            name = "id",
-            insertable = false, updatable = false
+            name = "organization_id", // indica con que columna vamos a relacionar en organization
+            insertable = false, updatable = false // esto permite que la columna no se cree
     )
     private OrganizationEntity organization;
 
+    // columna de la relacion organization_id
     @Column(name = "organization_id", nullable = false)
     private Long organizationId;
+
+
+    private boolean deleted = Boolean.FALSE;
+
+    @Column(nullable = false)
+    @CreationTimestamp
+    private Timestamp timestamp;
+
 }

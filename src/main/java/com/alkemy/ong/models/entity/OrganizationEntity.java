@@ -47,7 +47,7 @@ public class OrganizationEntity {
 
     private boolean deleted = Boolean.FALSE;
 
-    @Column(name = "timestamps", nullable = false)
+    @Column(nullable = false)
     @CreationTimestamp
     private Timestamp timestamps;
 
