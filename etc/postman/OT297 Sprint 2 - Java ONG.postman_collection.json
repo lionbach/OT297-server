@@ -242,7 +242,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQxNjUwNjEsImV4cCI6MTY2NDIyNTU0MX0.Wx3L4e__FNbdrZj1Xobq4pt_IKDeqWa3pdHxbDgXoIJ3PXmMEFL1bqyrcIbx9u505vX_nskrEoDn6XLPPbtHxQ",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQzMTE1NDAsImV4cCI6MTY2NDM3MjAyMH0.49EQ4HI8KW8Vle4ddTzQeEa5uZ24bSG0P16qoLi6IvqI24oB39PcpdQey26FNbt_2GAqLA3NVHtKC6wuvskkPQ",
 									"type": "string"
 								}
 							]
@@ -286,7 +286,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQyNDQyMzUsImV4cCI6MTY2NDMwNDcxNX0.WiTvbwXJwg5YaRwAwSil96jMeHbR4cobhmYzDPO0H0zBbXili66KrZAm_TaFJ9LwGOGfbIXUgBT3SGymWiYwGA",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQzMTEzNzIsImV4cCI6MTY2NDM3MTg1Mn0.UBJYMzzsPjUKGf5r1197g0eFuULlZqOma750HlwLEiDqQnsiD7dLPidDGjIx42DxRc_gbrlePTcCnbukiXg8BQ",
 									"type": "string"
 								}
 							]
@@ -295,7 +295,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"imageUrl\": \"/img/picture.jpg\",\r\n    \"text\": \"my text\",\r\n    \"organizationId\": 1\r\n\r\n}",
+							"raw": "{\r\n    \"imageUrl\": \"/img/picture.jpg\",\r\n    \"text\": \"my text\",\r\n    \"slideOrder\": 20,\r\n    \"organizationId\": 1\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
