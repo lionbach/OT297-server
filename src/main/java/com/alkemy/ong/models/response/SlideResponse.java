@@ -1,11 +1,9 @@
 package com.alkemy.ong.models.response;
 
 
-import com.alkemy.ong.models.entity.OrganizationEntity;
+
 import lombok.*;
 
-
-import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 

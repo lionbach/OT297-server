@@ -31,7 +31,7 @@ public class SlideEntity {
     private String text;
 
 
-    // definos la relacion slice-organization
+    // definimos la relacion slice-organization
     // no se va a crear esta columna en mysql
     // la columna de la relacion la definimos despues
     // tambien sirve para obtener, en java, los datos de la organizacion en el slice

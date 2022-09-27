@@ -19,6 +19,7 @@ OrganizationMapper organizationMapper;
 @Autowired
 OrganizationRepository organizationRepository;
     public SlideEntity slideRequest2SlideEntity(SlideRequest slide) {
+
         // get organization
         Optional<OrganizationEntity> OptionalOrganizationEntity = organizationRepository.findById(slide.getOrganizationId());
 
