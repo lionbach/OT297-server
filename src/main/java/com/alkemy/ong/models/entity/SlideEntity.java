@@ -34,9 +34,6 @@ public class SlideEntity {
     @NotEmpty
     private String text;
 
-    @Column(name = "ord")
-    private Integer order;
-
     @Column(name = "soft_delete")
     @Builder.Default
     private boolean deleted = Boolean.FALSE;
@@ -44,7 +41,14 @@ public class SlideEntity {
     @CreationTimestamp
     private Timestamp timestamp;
 
-    @NotNull
-    @Column(name = "organization_id")
+    //@NotNull
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(
+            name = "id",
+            insertable = false, updatable = false
+    )
+    private OrganizationEntity organization;
+
+    @Column(name = "organization_id", nullable = false)
     private Long organizationId;
 }

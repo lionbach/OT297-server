@@ -50,4 +50,6 @@ public class OrganizationEntity {
     @Column(name = "timestamps", nullable = false)
     @CreationTimestamp
     private Timestamp timestamps;
+
+
 }
