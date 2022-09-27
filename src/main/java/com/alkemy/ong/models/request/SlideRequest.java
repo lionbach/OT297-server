@@ -12,13 +12,13 @@ public class SlideRequest {
 
     @NotNull
     @NotEmpty
-    @NotEmpty
     private String imageUrl;
 
     @NotNull
     @NotEmpty
-    @NotEmpty
     private String text;
+
+    private Integer slideOrder;
 
     private OrganizationResponse organization;
 

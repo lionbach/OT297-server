@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -29,6 +30,10 @@ public class SlideEntity {
     @NotNull
     @NotEmpty
     private String text;
+
+    @NotNull
+    @Column(unique=true)
+    private Integer sliceOrder;
 
 
     // definimos la relacion slice-organization

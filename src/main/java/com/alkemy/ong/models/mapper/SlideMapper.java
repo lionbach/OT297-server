@@ -27,6 +27,7 @@ OrganizationRepository organizationRepository;
         SlideEntity entity = new SlideEntity();
         entity.setImageUrl(slide.getImageUrl());
         entity.setText(slide.getText());
+        entity.setSliceOrder(slide.getSlideOrder());
         entity.setOrganization(OptionalOrganizationEntity.get());
         entity.setOrganizationId(slide.getOrganizationId());
 
@@ -40,6 +41,7 @@ OrganizationRepository organizationRepository;
         response.setId(savedEntity.getId());
         response.setImageUrl(savedEntity.getImageUrl());
         response.setText(savedEntity.getText());
+        response.setSlideOrder(savedEntity.getSliceOrder());
         response.setOrganization(organizationMapper.organizationsEntity2OrganizationsResponse(savedEntity.getOrganization()));
         response.setOrganizationId(savedEntity.getOrganizationId());
         response.setTimestamps(savedEntity.getTimestamp());
