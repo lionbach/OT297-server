@@ -1,4 +1,5 @@
-pom.comentado.xml
+pom.xml.comentado
+pom.xml.original
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar

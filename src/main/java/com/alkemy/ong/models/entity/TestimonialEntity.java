@@ -10,35 +10,34 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "categories")
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE categories SET deleted = true where id=?")
-@Where(clause = "deleted=false")
-public class CategoryEntity {
+@Table(name = "testimonial")
+@SQLDelete(sql = "UPDATE testimonial SET soft_delete = true where id=?")
+@Where(clause = "soft_delete=false")
+public class TestimonialEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "description")
-    private String description;
-
     @Column(name = "image")
     private String image;
 
-    @Column(name = "timestamps", nullable = false)
+    @Column(name = "content")
+    private String content;
+
+    @Column(name = "timestamp", nullable = false)
     @CreationTimestamp
-    private Timestamp timestamps;
+    private Timestamp timestamp;
 
-    @Column(name = "deleted", nullable = false)
-    private boolean deleted = Boolean.FALSE;
+    @Column(name = "soft_delete", nullable = false)
+    private Boolean softDelete = Boolean.FALSE;
 
-//    @PrePersist
-//    void persist() {
-//        setTimestamps(LocalDateTime.now());
-//    }
+    public TestimonialEntity() {
+    }
 }

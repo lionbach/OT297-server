@@ -10,12 +10,12 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "activities")
+@Table(name = "news")
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE activities SET deleted = true WHERE id = ?")
-@Where(clause = "deleted = false")
-public class ActivityEntity {
+@SQLDelete(sql = "UPDATE news SET deleted = true where id=?")
+@Where(clause = "deleted=false")
+public class NewEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +36,13 @@ public class ActivityEntity {
 
     @Column(name = "deleted", nullable = false)
     private boolean deleted = Boolean.FALSE;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    private CategoryEntity category;
+
+    @Column(name = "category_id", nullable = false)
+    private Long categoryId;
 
 //    @PrePersist
 //    void persist() {
