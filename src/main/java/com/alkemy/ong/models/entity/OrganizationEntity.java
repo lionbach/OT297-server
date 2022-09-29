@@ -1,6 +1,8 @@
 package com.alkemy.ong.models.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
@@ -10,6 +12,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="organizations")
 @Setter
@@ -32,7 +36,7 @@ public class OrganizationEntity {
 
     private String address;
 
-    private Integer phone;
+    private String phone;
 
     @NotNull
     @Column(nullable = false)
@@ -51,5 +55,13 @@ public class OrganizationEntity {
     @CreationTimestamp
     private Timestamp timestamps;
 
-
+    public OrganizationEntity(String name, String image, String address, String phone, String email, String welcomeText, String aboutUsText) {
+        this.name = name;
+        this.image = image;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+        this.welcomeText = welcomeText;
+        this.aboutUsText = aboutUsText;
+    }
 }

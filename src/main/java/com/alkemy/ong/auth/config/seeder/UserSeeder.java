@@ -1,7 +1,11 @@
 package com.alkemy.ong.auth.config.seeder;
 
+import com.alkemy.ong.models.entity.CategoryEntity;
+import com.alkemy.ong.models.entity.OrganizationEntity;
 import com.alkemy.ong.models.entity.RoleEntity;
 import com.alkemy.ong.models.entity.UserEntity;
+import com.alkemy.ong.repository.CategoryRepository;
+import com.alkemy.ong.repository.OrganizationRepository;
 import com.alkemy.ong.repository.RoleRepository;
 import com.alkemy.ong.repository.UserRepository;
 import com.alkemy.ong.utils.RoleEnum;
@@ -19,22 +23,29 @@ import java.util.Set;
 @Component
 public class UserSeeder implements CommandLineRunner {
 
-    @Autowired
-    UserRepository userRepository;
+
     @Autowired
     PasswordEncoder passwordEncoder;
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    OrganizationRepository organizationRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
 
     private static final System.Logger LOGGER = System.getLogger("Mi log");
 
     @Override
     public void run(String... args) throws Exception {
+        LOGGER.log(Level.INFO, "Inicializing seeder");
         this.loadSeedersUsers();
+        this.loadSeedersOrganization();
+        this.loadSeedersCategories();
     }
 
     private void loadSeedersUsers() {
-        LOGGER.log(Level.INFO, "Inicializing seeder");
         if (roleRepository.findAll().isEmpty() && userRepository.findAll().isEmpty()) {
 
             // Create Roles
@@ -43,6 +54,7 @@ public class UserSeeder implements CommandLineRunner {
 
             Set<RoleEntity> roleAdmin = roleRepository.findByName(RoleEnum.ADMIN.getFullRoleName());
             Set<RoleEntity> roleUser = roleRepository.findByName(RoleEnum.USER.getFullRoleName());
+
             // Create Users
             this.userRepository.save(new UserEntity("Marta", "Sanchez", "marta-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleAdmin));
             this.userRepository.save(new UserEntity("Guillermo", "Pintos", "guillermo-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleAdmin));
@@ -67,4 +79,21 @@ public class UserSeeder implements CommandLineRunner {
             this.userRepository.save(new UserEntity("Daenerys", "Targaryen", "daenerys-email@gmail.com", passwordEncoder.encode("12345"), "stringPath", new Timestamp(System.currentTimeMillis()), roleUser));
         }
     }
+
+    private void loadSeedersOrganization() {
+        if (organizationRepository.findAll().isEmpty()){
+            organizationRepository.save(new OrganizationEntity("ONG Somos Mas","/img/logo.jpg","street A 123", "01187654321","somos_mas@gmail.com","Welcome Text","About Us Text"));
+        }
+    }
+    private void loadSeedersCategories() {
+        if (categoryRepository.findAll().isEmpty()){
+            categoryRepository.save(new CategoryEntity("Cat A","Description AAA","/img/a.jpg"));
+            categoryRepository.save(new CategoryEntity("Cat B","Description BBB","/img/b.jpg"));
+            categoryRepository.save(new CategoryEntity("Cat C","Description CCC","/img/c.jpg"));
+        }
+    }
+
+
+
+
 }
