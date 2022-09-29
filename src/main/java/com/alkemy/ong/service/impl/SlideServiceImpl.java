@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -21,7 +22,7 @@ public class SlideServiceImpl implements SlideService {
     @Autowired
     SlideMapper slideMapper;
     @Override
-    public SlideResponse save(SlideRequest slide) {
+    public SlideResponse save(SlideRequest slide) throws IOException {
         SlideEntity entity = slideMapper.slideRequest2SlideEntity(slide);
         //verify order
         if (entity.getSliceOrder() == null || entity.getSliceOrder() == 0 ){
