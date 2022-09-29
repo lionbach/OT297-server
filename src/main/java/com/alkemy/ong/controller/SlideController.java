@@ -30,4 +30,9 @@ public class SlideController {
     public ResponseEntity<List<SlideBasicResponse>> getAll() {
         return ResponseEntity.ok(slideService.getAll());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<SlideResponse> getSlide(@RequestHeader(name = "Authorization") @PathVariable Long id) throws IOException {
+        return slideService.findById(id);
+    }
 }

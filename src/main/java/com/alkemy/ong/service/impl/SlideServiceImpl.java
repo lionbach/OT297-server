@@ -9,8 +9,11 @@ import com.alkemy.ong.repository.SlideRepository;
 import com.alkemy.ong.service.SlideService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -39,5 +42,17 @@ public class SlideServiceImpl implements SlideService {
     public List<SlideBasicResponse> getAll() {
         List<SlideEntity> slideEntities = slideRepository.findAll();
         return slideMapper.slideEntitiesList2SlideBasicResponseList(slideEntities);
+    }
+
+    @Override
+    public ResponseEntity<SlideResponse> findById(Long id) throws IOException {
+        ResponseEntity<SlideResponse> response;
+        if (slideRepository.existsById(id)) {
+            SlideEntity slideEntity = slideRepository.findById(id).orElseThrow();
+            response = ResponseEntity.status(HttpStatus.OK).body(slideMapper.slideEntity2SlideResponse(slideEntity));
+        } else {
+            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return response;
     }
 }
