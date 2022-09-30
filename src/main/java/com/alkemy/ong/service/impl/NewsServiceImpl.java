@@ -9,6 +9,8 @@ import com.alkemy.ong.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 @Service
 public class NewsServiceImpl implements NewsService {
 
@@ -19,7 +21,7 @@ public class NewsServiceImpl implements NewsService {
     NewsMapper newsMapper;
 
     @Override
-    public NewsResponse save(NewsRequest news) {
+    public NewsResponse save(NewsRequest news) throws IOException {
         NewEntity entity = newsMapper.newsRequest2NewEntity(news);
         NewEntity savedEntity = newsRepository.save(entity);
         NewsResponse response = newsMapper.newEntity2NewsResponse(savedEntity);
