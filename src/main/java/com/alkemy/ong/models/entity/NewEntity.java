@@ -30,6 +30,7 @@ public class NewEntity {
     @Column(name = "image", nullable = false)
     private String image;
 
+    /*
     @Column(name = "timestamps", nullable = false)
     @CreationTimestamp
     private Timestamp timestamps;
@@ -43,7 +44,24 @@ public class NewEntity {
 
     @Column(name = "category_id", nullable = false)
     private Long categoryId;
+*/
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(
+            name = "category_id", // indica con que columna vamos a relacionar en category
+            insertable = false, updatable = false // esto permite que la columna no se cree
+    )
+    private CategoryEntity category;
 
+    // columna de la relacion category_id
+    @Column(name = "category_id", nullable = false)
+    private Long categoryId;
+
+
+    private boolean deleted = Boolean.FALSE;
+
+    @Column(nullable = false)
+    @CreationTimestamp
+    private Timestamp timestamp;
 //    @PrePersist
 //    void persist() {
 //        setTimestamps(LocalDateTime.now());
