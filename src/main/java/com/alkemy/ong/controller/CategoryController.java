@@ -7,10 +7,7 @@ import com.alkemy.ong.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -24,6 +21,13 @@ public class CategoryController {
     @PostMapping
     public ResponseEntity<CategoryResponse> save(@Valid @RequestBody CategoryRequest categoryRequest){
         CategoryResponse categorySavedResponse  = categoryService.save(categoryRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(categorySavedResponse);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryResponse> update(@Valid @RequestBody CategoryRequest categoryRequest, @PathVariable Long id ){
+        CategoryResponse categorySavedResponse  = categoryService.update(categoryRequest, id);
+        if (categorySavedResponse == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         return ResponseEntity.status(HttpStatus.CREATED).body(categorySavedResponse);
     }
 
