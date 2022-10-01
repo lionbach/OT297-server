@@ -8,11 +8,11 @@ import java.util.List;
 @Data
 public class GenericException extends RuntimeException {
     private HttpStatus status;
-    private String errors;
+    private String error;
 
-    public GenericException(HttpStatus status, String message, String errors) {
+    public GenericException(HttpStatus status, String message, String error) {
         super(message);
         this.status = status;
-        this.errors = errors;
+        this.error = error;
     }
 }
