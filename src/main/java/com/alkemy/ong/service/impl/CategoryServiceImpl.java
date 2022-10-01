@@ -1,5 +1,6 @@
 package com.alkemy.ong.service.impl;
 
+import com.alkemy.ong.exception.GenericException;
 import com.alkemy.ong.models.entity.CategoryEntity;
 import com.alkemy.ong.models.mapper.CategoryMapper;
 import com.alkemy.ong.models.request.CategoryRequest;
@@ -29,15 +30,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse update(CategoryRequest categoryRequest, Long id) {
-        CategoryResponse categoryResponse;
-        if (categoryRepository.existsById(id)){
-            CategoryEntity categoryEntity =  categoryMapper.categoryRequest2CategoryUpdateEntity(categoryRequest, id);
-            CategoryEntity categorySavedEntity = categoryRepository.save(categoryEntity);
-            categoryResponse = categoryMapper.categoryEntity2CategoryResponse(categorySavedEntity);
-
-        } else {
-            categoryResponse = null;
-        }
+        if (!categoryRepository.existsById(id)) throw new GenericException(HttpStatus.BAD_REQUEST, "The category to update does not exist", "id not exist");
+        CategoryEntity categoryEntity =  categoryMapper.categoryRequest2CategoryUpdateEntity(categoryRequest, id);
+        CategoryEntity categorySavedEntity = categoryRepository.save(categoryEntity);
+        CategoryResponse categoryResponse = categoryMapper.categoryEntity2CategoryResponse(categorySavedEntity);
         return categoryResponse;
     }
 }
