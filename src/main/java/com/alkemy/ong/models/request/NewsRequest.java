@@ -23,6 +23,6 @@ public class NewsRequest {
 
     private CategoryResponse category;
 
-    @NotNull
+    //@NotNull
     private Long categoryId;
 }
