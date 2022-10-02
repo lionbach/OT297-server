@@ -55,6 +55,30 @@ public class NewsServiceImpl implements NewsService {
 
     }
 
+    @Override
+    public ResponseEntity<NewsResponse> findById(Long id) throws IOException {
+        ResponseEntity<NewsResponse> response;
+        if (newsRepository.existsById(id)) {
+            NewEntity slideEntity = newsRepository.findById(id).orElseThrow();
+            response = ResponseEntity.status(HttpStatus.OK).body(newsMapper.newEntity2NewsResponse(slideEntity));
+        } else {
+            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return response;
+    }
+
+    @Override
+    public ResponseEntity<Void> delete(Long id, String token) {
+        ResponseEntity<Void> response;
+        if (authService.roleValidator(id, token)){
+            newsRepository.deleteById(id);
+            response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } else {
+            response = ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        return response;
+    }
+
     public boolean validInput(String input){
         return (input != null && !input.isEmpty() && !input.isBlank());
     }

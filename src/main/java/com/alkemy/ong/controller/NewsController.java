@@ -32,4 +32,14 @@ public class NewsController {
         //return ResponseEntity.status(HttpStatus.OK).body(userService.update(id, userUpdateRequest));
         return newsService.update(id, newsUpdateRequest, token);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<NewsResponse> getNews(@RequestHeader(name = "Authorization") @PathVariable Long id) throws IOException {
+        return newsService.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id, @RequestHeader(name = "Authorization") String token){
+        return newsService.delete(id, token);
+    }
 }

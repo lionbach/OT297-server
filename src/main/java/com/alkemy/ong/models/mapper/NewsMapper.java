@@ -2,11 +2,9 @@ package com.alkemy.ong.models.mapper;
 
 import com.alkemy.ong.models.entity.CategoryEntity;
 import com.alkemy.ong.models.entity.NewEntity;
-import com.alkemy.ong.models.entity.UserEntity;
 import com.alkemy.ong.models.request.NewsRequest;
 import com.alkemy.ong.models.response.NewsResponse;
 import com.alkemy.ong.models.response.NewsUpdateResponse;
-import com.alkemy.ong.models.response.UserUpdateResponse;
 import com.alkemy.ong.repository.CategoryRepository;
 import com.alkemy.ong.service.AwsService;
 import org.springframework.beans.factory.annotation.Autowired;

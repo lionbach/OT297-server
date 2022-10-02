@@ -1,7 +1,6 @@
 package com.alkemy.ong.models.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -13,6 +12,8 @@ import java.sql.Timestamp;
 @Table(name = "news")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @SQLDelete(sql = "UPDATE news SET deleted = true where id=?")
 @Where(clause = "deleted=false")
 public class NewEntity {
@@ -62,6 +63,14 @@ public class NewEntity {
     @Column(nullable = false)
     @CreationTimestamp
     private Timestamp timestamp;
+
+
+    public NewEntity(String name, String content, String image, Long categoryId) {
+        this.name = name;
+        this.content = content;
+        this.image = image;
+        this.categoryId = categoryId;
+    }
 //    @PrePersist
 //    void persist() {
 //        setTimestamps(LocalDateTime.now());
