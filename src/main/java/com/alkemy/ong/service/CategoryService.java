@@ -11,4 +11,5 @@ public interface CategoryService {
     CategoryResponse update(CategoryRequest categoryRequest, Long id);
     List<CategoryOnlyNameResponse> listCategories();
     CategoryResponse getCategory(Long id);
+    void deleteCategory(Long id);
 }

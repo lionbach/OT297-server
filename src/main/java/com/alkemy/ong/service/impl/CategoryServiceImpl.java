@@ -53,4 +53,10 @@ public class CategoryServiceImpl implements CategoryService {
         CategoryResponse categoryResponse = categoryMapper.categoryEntity2CategoryResponse(entity);
         return categoryResponse;
     }
+
+    @Override
+    public void deleteCategory(Long id) {
+        if (!categoryRepository.existsById(id)) throw new GenericException(HttpStatus.NOT_FOUND, "The category to delete does not exist", "id not exist");
+        categoryRepository.deleteById(id);
+    }
 }
