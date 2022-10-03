@@ -6,8 +6,8 @@ import com.alkemy.ong.models.mapper.NewsMapper;
 import com.alkemy.ong.models.request.NewsRequest;
 import com.alkemy.ong.models.request.NewsUpdateRequest;
 import com.alkemy.ong.models.response.NewsResponse;
-import com.alkemy.ong.models.response.NewsUpdateResponse;
 import com.alkemy.ong.repository.NewsRepository;
+import com.alkemy.ong.service.AwsService;
 import com.alkemy.ong.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +27,8 @@ public class NewsServiceImpl implements NewsService {
 
     @Autowired
     AuthService authService;
-
+    @Autowired
+    AwsService awsService;
     @Override
     public NewsResponse save(NewsRequest news) throws IOException {
         NewEntity entity = newsMapper.newsRequest2NewEntity(news);
@@ -36,21 +37,24 @@ public class NewsServiceImpl implements NewsService {
         return response;
     }
 
-    @Override
-    public ResponseEntity<NewsUpdateResponse> update(Long id, NewsUpdateRequest newsUpdateRequest, String token) throws IOException {
 
-        ResponseEntity<NewsUpdateResponse> response;
-        if (authService.roleValidator(id, token)){
+
+    @Override
+    public ResponseEntity<NewsResponse> update(Long id, NewsUpdateRequest newsUpdateRequest, String token) throws IOException {
+
+        ResponseEntity<NewsResponse> response;
+
+
             NewEntity entity = newsRepository.findById(id).orElseThrow();
             if (validInput(newsUpdateRequest.getName())) entity.setName(newsUpdateRequest.getName());
             if (validInput(newsUpdateRequest.getContent())) entity.setContent(newsUpdateRequest.getContent());
-            if (validInput(newsUpdateRequest.getImage())) entity.setImage(newsUpdateRequest.getImage());
-            if (validInput(newsUpdateRequest.getCategoryId().toString())) entity.setCategoryId(newsUpdateRequest.getCategoryId());
+            if (validInput(newsUpdateRequest.getImage())) entity.setImage(awsService.uploadFileFromBase64(newsUpdateRequest.getImage()));// esto pasarlo al mapper
+            if (newsUpdateRequest.getCategoryId()!= null) entity.setCategoryId(newsUpdateRequest.getCategoryId());
 
-            response = (ResponseEntity<NewsUpdateResponse>) ResponseEntity.status(HttpStatus.OK).body(newsMapper.newsEntity2NewsUpdateResponse(newsRepository.save(entity)));
-        } else {
+            response = (ResponseEntity<NewsResponse>) ResponseEntity.status(HttpStatus.OK).body(newsMapper.newEntity2NewsResponse(newsRepository.save(entity)));
+      /*  } else {
             response = ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+        }*/
         return response;
 
     }

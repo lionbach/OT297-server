@@ -28,7 +28,7 @@ public class NewsController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<NewsUpdateResponse> updateNews(@Valid @PathVariable Long id, @RequestBody NewsUpdateRequest newsUpdateRequest, @RequestHeader(name = "Authorization") String token) throws IOException {
+    public ResponseEntity<NewsResponse> updateNews(@Valid @PathVariable Long id, @RequestBody NewsUpdateRequest newsUpdateRequest, @RequestHeader(name = "Authorization") String token) throws IOException {
         //return ResponseEntity.status(HttpStatus.OK).body(userService.update(id, userUpdateRequest));
         return newsService.update(id, newsUpdateRequest, token);
     }

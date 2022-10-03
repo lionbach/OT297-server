@@ -12,7 +12,8 @@ public interface NewsService {
 
     public NewsResponse save(NewsRequest news) throws IOException;
 
-    ResponseEntity<NewsUpdateResponse> update(Long id, NewsUpdateRequest newsUpdateRequest, String token) throws IOException;
+    ResponseEntity<NewsResponse> update(Long id, NewsUpdateRequest newsUpdateRequest, String token) throws IOException;
+
 
     ResponseEntity<NewsResponse> findById(Long id) throws IOException;
 

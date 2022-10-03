@@ -40,7 +40,7 @@ public class NewsMapper {
         return entity;
     }
 
-    public NewsResponse newEntity2NewsResponse(NewEntity savedEntity) {
+    public NewsResponse newEntity2NewsResponse(NewEntity savedEntity) throws IOException {
         NewsResponse response = new NewsResponse();
         response.setId(savedEntity.getId());
         response.setName(savedEntity.getName());
@@ -51,7 +51,7 @@ public class NewsMapper {
         response.setTimestamps(savedEntity.getTimestamp());
         return response;
     }
-
+/*
     public NewsUpdateResponse newsEntity2NewsUpdateResponse(NewEntity newsEntity) {
         NewsUpdateResponse newsUpdateResponse = new NewsUpdateResponse();
         newsUpdateResponse.setName(newsEntity.getName());
@@ -61,5 +61,5 @@ public class NewsMapper {
 
         return newsUpdateResponse;
     }
-
+*/
 }
