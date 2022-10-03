@@ -2,10 +2,14 @@ package com.alkemy.ong.models.mapper;
 
 import com.alkemy.ong.models.entity.CategoryEntity;
 import com.alkemy.ong.models.request.CategoryRequest;
+import com.alkemy.ong.models.response.CategoryOnlyNameResponse;
 import com.alkemy.ong.models.response.CategoryResponse;
 import com.alkemy.ong.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class CategoryMapper {
@@ -36,5 +40,15 @@ public class CategoryMapper {
         categoryEntity.setId(id);
         categoryEntity.setTimestamps(categoryRepository.findById(id).get().getTimestamps());
         return categoryEntity;
+    }
+
+    public List<CategoryOnlyNameResponse> listCategoryEntity2ListCategoryOnlyNameResponse(List<CategoryEntity> categoryEntity) {
+        List<CategoryOnlyNameResponse> listResponse = new ArrayList<>();
+        for (CategoryEntity ent : categoryEntity) {
+            CategoryOnlyNameResponse res = new CategoryOnlyNameResponse();
+            res.setName(ent.getName());
+            listResponse.add(res);
+        }
+        return listResponse;
     }
 }

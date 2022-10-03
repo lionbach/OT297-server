@@ -4,13 +4,15 @@ import com.alkemy.ong.exception.GenericException;
 import com.alkemy.ong.models.entity.CategoryEntity;
 import com.alkemy.ong.models.mapper.CategoryMapper;
 import com.alkemy.ong.models.request.CategoryRequest;
+import com.alkemy.ong.models.response.CategoryOnlyNameResponse;
 import com.alkemy.ong.models.response.CategoryResponse;
 import com.alkemy.ong.repository.CategoryRepository;
 import com.alkemy.ong.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -35,5 +37,12 @@ public class CategoryServiceImpl implements CategoryService {
         CategoryEntity categorySavedEntity = categoryRepository.save(categoryEntity);
         CategoryResponse categoryResponse = categoryMapper.categoryEntity2CategoryResponse(categorySavedEntity);
         return categoryResponse;
+    }
+
+    @Override
+    public List<CategoryOnlyNameResponse> listCategories() {
+        List<CategoryEntity> categoryEntity =  categoryRepository.findAll();
+        List<CategoryOnlyNameResponse> categoriesResponse = categoryMapper.listCategoryEntity2ListCategoryOnlyNameResponse(categoryEntity);
+        return categoriesResponse;
     }
 }
