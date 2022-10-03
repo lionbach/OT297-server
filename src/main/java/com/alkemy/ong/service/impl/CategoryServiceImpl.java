@@ -45,4 +45,12 @@ public class CategoryServiceImpl implements CategoryService {
         List<CategoryOnlyNameResponse> categoriesResponse = categoryMapper.listCategoryEntity2ListCategoryOnlyNameResponse(categoryEntity);
         return categoriesResponse;
     }
+
+    @Override
+    public CategoryResponse getCategory(Long id) {
+        if (!categoryRepository.existsById(id)) throw new GenericException(HttpStatus.NOT_FOUND, "The category does not exist", "id not exist");
+        CategoryEntity entity = categoryRepository.getById(id);
+        CategoryResponse categoryResponse = categoryMapper.categoryEntity2CategoryResponse(entity);
+        return categoryResponse;
+    }
 }

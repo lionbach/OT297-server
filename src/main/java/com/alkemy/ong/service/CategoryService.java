@@ -10,4 +10,5 @@ public interface CategoryService {
     CategoryResponse save(CategoryRequest categoryRequest);
     CategoryResponse update(CategoryRequest categoryRequest, Long id);
     List<CategoryOnlyNameResponse> listCategories();
+    CategoryResponse getCategory(Long id);
 }
