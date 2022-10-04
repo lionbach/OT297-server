@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ErrorListResponse {
     private HttpStatus status;
-    private String message;
-    private List<String> errors;
+    private List<String> errorDefaultMessages;
+    private String errorLocalizedMessage;
+
 }

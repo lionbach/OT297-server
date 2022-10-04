@@ -28,22 +28,23 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
             HttpStatus status,
             WebRequest request
     ) {
-        List<String> errors = new ArrayList<>();
+        List<String> errorDefaultMessages = new ArrayList<>();
         //create 1 line for any message
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
-            errors.add(error.getField() + ": " + error.getDefaultMessage());
+            errorDefaultMessages.add(error.getField() + ": " + error.getDefaultMessage());
         }
+        // Esto no genera nada. No se que se espera de estas lineas
         //create 1 line for all errors
         for (ObjectError error : ex.getBindingResult().getGlobalErrors()) {
-            errors.add(error.getObjectName() + ": " + error.getDefaultMessage());
+            errorDefaultMessages.add(error.getObjectName() + ": " + error.getDefaultMessage());
         }
-        ErrorListResponse errorListResponse = new ErrorListResponse(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), errors);
+        ErrorListResponse errorListResponse = new ErrorListResponse(HttpStatus.BAD_REQUEST, errorDefaultMessages, ex.getLocalizedMessage() );
         ResponseEntity<Object> response = handleExceptionInternal(ex, errorListResponse, headers, errorListResponse.getStatus(), request);
         return response;
     }
 
     // this method capture exceptions generate with:
-    // throw new GenericException(HttpStatus.YourStatus, "your message here", "your error here");
+    // throw new GenericException(HttpStatus.YourStatus, "your default error message", "your long error message");
     @ExceptionHandler(value = GenericException.class)
     public ResponseEntity<ErrorResponse> genericExceptionHandler(GenericException ex){
         ErrorResponse errorBody = new ErrorResponse(ex.getStatus(), ex.getMessage(), ex.getError());

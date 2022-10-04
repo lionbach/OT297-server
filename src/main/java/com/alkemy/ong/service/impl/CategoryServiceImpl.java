@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse update(CategoryRequest categoryRequest, Long id) throws IOException {
-        if (!categoryRepository.existsById(id)) throw new GenericException(HttpStatus.BAD_REQUEST, "The category to update does not exist", "id not exist");
+        if (!categoryRepository.existsById(id)) throw new GenericException(HttpStatus.BAD_REQUEST, "id not exist", "The category to update does not exist");
         CategoryEntity categoryEntity =  categoryMapper.categoryRequest2CategoryUpdateEntity(categoryRequest, id);
         CategoryEntity categorySavedEntity = categoryRepository.save(categoryEntity);
         CategoryResponse categoryResponse = categoryMapper.categoryEntity2CategoryResponse(categorySavedEntity);
@@ -49,7 +49,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse getCategory(Long id) {
-        if (!categoryRepository.existsById(id)) throw new GenericException(HttpStatus.NOT_FOUND, "The category does not exist", "id not exist");
+        if (!categoryRepository.existsById(id)) throw new GenericException(HttpStatus.NOT_FOUND, "id not exist", "The category does not exist");
         CategoryEntity entity = categoryRepository.getById(id);
         CategoryResponse categoryResponse = categoryMapper.categoryEntity2CategoryResponse(entity);
         return categoryResponse;
@@ -57,7 +57,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteCategory(Long id) {
-        if (!categoryRepository.existsById(id)) throw new GenericException(HttpStatus.NOT_FOUND, "The category to delete does not exist", "id not exist");
+        if (!categoryRepository.existsById(id)) throw new GenericException(HttpStatus.NOT_FOUND, "id not exist", "The category to delete does not exist");
         categoryRepository.deleteById(id);
     }
 }
