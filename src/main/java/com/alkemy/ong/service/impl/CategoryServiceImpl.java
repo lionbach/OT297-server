@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -23,7 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
     CategoryRepository categoryRepository;
 
     @Override
-    public CategoryResponse save(CategoryRequest categoryRequest) {
+    public CategoryResponse save(CategoryRequest categoryRequest) throws IOException {
         CategoryEntity categoryEntity =  categoryMapper.categoryRequest2CategoryEntity(categoryRequest);
         CategoryEntity categorySavedEntity = categoryRepository.save(categoryEntity);
         CategoryResponse categoryResponse = categoryMapper.categoryEntity2CategoryResponse(categorySavedEntity);
@@ -31,7 +32,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryResponse update(CategoryRequest categoryRequest, Long id) {
+    public CategoryResponse update(CategoryRequest categoryRequest, Long id) throws IOException {
         if (!categoryRepository.existsById(id)) throw new GenericException(HttpStatus.BAD_REQUEST, "The category to update does not exist", "id not exist");
         CategoryEntity categoryEntity =  categoryMapper.categoryRequest2CategoryUpdateEntity(categoryRequest, id);
         CategoryEntity categorySavedEntity = categoryRepository.save(categoryEntity);

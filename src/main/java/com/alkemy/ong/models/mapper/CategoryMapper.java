@@ -5,21 +5,24 @@ import com.alkemy.ong.models.request.CategoryRequest;
 import com.alkemy.ong.models.response.CategoryOnlyNameResponse;
 import com.alkemy.ong.models.response.CategoryResponse;
 import com.alkemy.ong.repository.CategoryRepository;
+import com.alkemy.ong.service.AwsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class CategoryMapper {
-
+    @Autowired
+    AwsService awsService;
     @Autowired
     CategoryRepository categoryRepository;
-    public CategoryEntity categoryRequest2CategoryEntity(CategoryRequest categoryRequest) {
+    public CategoryEntity categoryRequest2CategoryEntity(CategoryRequest categoryRequest) throws IOException {
         CategoryEntity categoryEntity = new CategoryEntity();
         categoryEntity.setName(categoryRequest.getName());
-        categoryEntity.setImage(categoryRequest.getImage());
+        categoryEntity.setImage(awsService.uploadFileFromBase64(categoryRequest.getImage()));
         categoryEntity.setDescription(categoryRequest.getDescription());
         return categoryEntity;
     }
@@ -34,7 +37,7 @@ public class CategoryMapper {
         return categoryResponse;
     }
 
-    public CategoryEntity categoryRequest2CategoryUpdateEntity(CategoryRequest categoryRequest, Long id) {
+    public CategoryEntity categoryRequest2CategoryUpdateEntity(CategoryRequest categoryRequest, Long id) throws IOException {
 
         CategoryEntity categoryEntity = categoryRequest2CategoryEntity(categoryRequest);
         categoryEntity.setId(id);

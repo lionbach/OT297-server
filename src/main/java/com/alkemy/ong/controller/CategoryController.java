@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.List;
 
@@ -22,13 +23,13 @@ public class CategoryController {
     CategoryService categoryService;
 
     @PostMapping
-    public ResponseEntity<CategoryResponse> save(@Valid @RequestBody CategoryRequest categoryRequest){
+    public ResponseEntity<CategoryResponse> save(@Valid @RequestBody CategoryRequest categoryRequest) throws IOException {
         CategoryResponse categorySavedResponse  = categoryService.save(categoryRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(categorySavedResponse);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponse> update(@Valid @RequestBody CategoryRequest categoryRequest, @PathVariable Long id ){
+    public ResponseEntity<CategoryResponse> update(@Valid @RequestBody CategoryRequest categoryRequest, @PathVariable Long id ) throws IOException {
         CategoryResponse categoryUpdatedResponse  = categoryService.update(categoryRequest, id);
         return ResponseEntity.status(HttpStatus.OK).body(categoryUpdatedResponse);
     }

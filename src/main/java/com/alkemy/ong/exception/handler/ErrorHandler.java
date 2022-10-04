@@ -31,13 +31,11 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
         List<String> errors = new ArrayList<>();
         //create 1 line for any message
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
-            String message = error.getField() + ": " + error.getDefaultMessage();
-            errors.add(message);
+            errors.add(error.getField() + ": " + error.getDefaultMessage());
         }
         //create 1 line for all errors
         for (ObjectError error : ex.getBindingResult().getGlobalErrors()) {
-            String globalsErrors = error.getObjectName() + ": " + error.getDefaultMessage();
-            errors.add(globalsErrors);
+            errors.add(error.getObjectName() + ": " + error.getDefaultMessage());
         }
         ErrorListResponse errorListResponse = new ErrorListResponse(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), errors);
         ResponseEntity<Object> response = handleExceptionInternal(ex, errorListResponse, headers, errorListResponse.getStatus(), request);
