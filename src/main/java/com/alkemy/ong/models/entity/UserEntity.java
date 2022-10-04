@@ -20,6 +20,7 @@ import java.util.Set;
 @Where(clause = "soft_delete=false")
 public class UserEntity {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true)
