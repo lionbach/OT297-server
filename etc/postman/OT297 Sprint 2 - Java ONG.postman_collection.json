@@ -167,7 +167,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "InsertToken",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQzMTAxMjcsImV4cCI6MTY2NDM3MDYwN30.GhwPUoEKb15EWCwtPJ6Ye1S6x_tQUW7PAEOLe32YgrAjNk_ItoUzEN4YXerF8lt0M2F_tcwP1iEsOksNX4tAHw",
 									"type": "string"
 								}
 							]
@@ -251,7 +251,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"ONG Somos Mas\",\r\n    \"image\" : \"/img/picture.jpg\",\r\n    \"address\" : \"Street 1\",\r\n    \"phone\" : 123456,\r\n    \"email\" : \"ong@gmail.com\",\r\n    \"welcomeText\" : \"welcome text\",\r\n    \"aboutUsText\" : \"About us text\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"ONG Somos Mas\",\r\n    \"image\" : \"/img/picture.jpg\",\r\n    \"address\" : \"Street 1\",\r\n    \"phone\" : \"123456\",\r\n    \"email\" : \"ong@gmail.com\",\r\n    \"welcomeText\" : \"welcome text\",\r\n    \"aboutUsText\" : \"About us text\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -380,7 +380,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "InsertToken",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQzMTAxMjcsImV4cCI6MTY2NDM3MDYwN30.GhwPUoEKb15EWCwtPJ6Ye1S6x_tQUW7PAEOLe32YgrAjNk_ItoUzEN4YXerF8lt0M2F_tcwP1iEsOksNX4tAHw",
 									"type": "string"
 								}
 							]
@@ -462,6 +462,48 @@
 							"path": [
 								"users",
 								"22"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "categories (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "insertToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Cat X\",\n    \"description\":\"Description X\",\n    \"image\":\"/image/X.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories"
 							]
 						}
 					},
