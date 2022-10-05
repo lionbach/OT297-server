@@ -2,20 +2,25 @@ package com.alkemy.ong.models.request;
 
 import lombok.Data;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Getter
 @Setter
 public class UserLoginRequest {
-    @NonNull
-    @Email(message = "Enter a correct email")
+    @NotNull(message = "cannot be null")
+    @NotEmpty(message = "cannot be empty")
+    @NotBlank(message = "cannot be blank")
+    @Email(message = "Enter a valid email")
     private String email;
-    @NonNull
-    @NotEmpty(message = "The password can't be empty")
+
+    @NotNull(message = "cannot be null")
+    @NotEmpty(message = "cannot be empty")
+    @NotBlank(message = "cannot be blank")
     private String password;
 }
