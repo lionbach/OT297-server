@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "620ac0a7-1491-4fd0-99bf-0a8c6eb9f910",
+		"name": "News",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19074528"
+	},
+	"item": [
+		{
+			"name": "News (Admin)",
+			"item": [
+				{
+					"name": "news (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQ1NzgyNzEsImV4cCI6MTY2NDYzODc1MX0.O5vZU1MnEumTS-mjA_oWdBY4xKD48iz82kxWwyJ-iJIfp46sEX_6yYbFGFY1cdaZQJAwlhU0g3yS1IDXQot1mw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Prueba\",\n    \"content\":\"Description X\",\n    \"image\":\"/image/X.png\",\n    \"categoryId\" : 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/news",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"news"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "news (Admin)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQ2NjYyMjksImV4cCI6MTY2NDcyNjcwOX0.d56JDQrZeQRazsHpQPkAlsK7wRviRZ1H4j6Tww6nHAqqjkBIDwVLi0uhb7VaHmu3gGJdmlXFjGtDTlNaxAZY6A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Cat X\",\n    \"description\":\"Description X\",\n    \"image\":\"/image/X.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/news/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"news",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newsUpDate (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQ2NjYyMjksImV4cCI6MTY2NDcyNjcwOX0.d56JDQrZeQRazsHpQPkAlsK7wRviRZ1H4j6Tww6nHAqqjkBIDwVLi0uhb7VaHmu3gGJdmlXFjGtDTlNaxAZY6A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Cat X\",\n    \"description\":\"Description X\",\n    \"image\":\"/image/X.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/news/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"news",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "news (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "insertToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Cat X\",\n    \"description\":\"Description X\",\n    \"image\":\"/image/X.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/news/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"news",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
