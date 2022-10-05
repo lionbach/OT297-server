@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<UserUpdateResponse> updateUser(@Valid @PathVariable Long id, @RequestBody UserUpdateRequest userUpdateRequest, @RequestHeader(name = "Authorization") String token) throws IOException {
+    public ResponseEntity<UserUpdateResponse> updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdateRequest userUpdateRequest, @RequestHeader(name = "Authorization") String token) throws IOException {
         //return ResponseEntity.status(HttpStatus.OK).body(userService.update(id, userUpdateRequest));
         return userService.update(id, userUpdateRequest, token);
     }

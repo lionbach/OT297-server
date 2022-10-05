@@ -26,7 +26,7 @@ public class SlideServiceImpl implements SlideService {
     SlideMapper slideMapper;
 
     @Override
-    public SlideResponse save(SlideRequest slide) {
+    public SlideResponse save(SlideRequest slide) throws IOException {
         SlideEntity entity = slideMapper.slideRequest2SlideEntity(slide);
         //verify order
         if (entity.getSliceOrder() == null || entity.getSliceOrder() == 0) {

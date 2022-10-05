@@ -8,11 +8,14 @@ import org.springframework.http.ResponseEntity;
 import java.io.IOException;
 import java.util.List;
 
+import java.io.IOException;
+
 public interface SlideService {
 
-    public SlideResponse save(SlideRequest slide);
+    public SlideResponse save(SlideRequest slide) throws IOException;
 
     List<SlideBasicResponse> getAll();
 
     ResponseEntity<SlideResponse> findById(Long id) throws IOException;
+
 }

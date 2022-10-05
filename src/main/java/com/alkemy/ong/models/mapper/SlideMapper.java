@@ -6,9 +6,12 @@ import com.alkemy.ong.models.request.SlideRequest;
 import com.alkemy.ong.models.response.SlideBasicResponse;
 import com.alkemy.ong.models.response.SlideResponse;
 import com.alkemy.ong.repository.OrganizationRepository;
+import com.alkemy.ong.service.AwsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,20 +19,26 @@ import java.util.Optional;
 @Component
 public class SlideMapper {
 
-    @Autowired
-    OrganizationMapper organizationMapper;
+@Autowired 
+OrganizationMapper organizationMapper;
 
-    @Autowired
-    OrganizationRepository organizationRepository;
+@Autowired
+OrganizationRepository organizationRepository;
 
-    public SlideEntity slideRequest2SlideEntity(SlideRequest slide) {
+@Autowired
+OrganizationRepository organizationRepository;
+
+@Autowired
+AwsService awsService;
+
+    public SlideEntity slideRequest2SlideEntity(SlideRequest slide) throws IOException {
 
         // get organization
         Optional<OrganizationEntity> OptionalOrganizationEntity = organizationRepository.findById(slide.getOrganizationId());
 
         //mapper
         SlideEntity entity = new SlideEntity();
-        entity.setImageUrl(slide.getImageUrl());
+        entity.setImageUrl(awsService.uploadFileFromBase64(slide.getImageUrl()));
         entity.setText(slide.getText());
         entity.setSliceOrder(slide.getSlideOrder());
         entity.setOrganization(OptionalOrganizationEntity.get());
