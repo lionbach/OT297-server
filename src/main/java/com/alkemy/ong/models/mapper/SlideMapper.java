@@ -24,8 +24,6 @@ OrganizationMapper organizationMapper;
 @Autowired
 OrganizationRepository organizationRepository;
 
-@Autowired
-OrganizationRepository organizationRepository;
 
 @Autowired
 AwsService awsService;
