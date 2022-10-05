@@ -3,21 +3,25 @@ package com.alkemy.ong.models.mapper;
 import com.alkemy.ong.models.entity.OrganizationEntity;
 import com.alkemy.ong.models.entity.SlideEntity;
 import com.alkemy.ong.models.request.SlideRequest;
+import com.alkemy.ong.models.response.SlideBasicResponse;
 import com.alkemy.ong.models.response.SlideResponse;
 import com.alkemy.ong.repository.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
 public class SlideMapper {
 
-@Autowired
-OrganizationMapper organizationMapper;
+    @Autowired
+    OrganizationMapper organizationMapper;
 
-@Autowired
-OrganizationRepository organizationRepository;
+    @Autowired
+    OrganizationRepository organizationRepository;
+
     public SlideEntity slideRequest2SlideEntity(SlideRequest slide) {
 
         // get organization
@@ -35,7 +39,6 @@ OrganizationRepository organizationRepository;
     }
 
 
-
     public SlideResponse slideEntity2SlideResponse(SlideEntity savedEntity) {
         SlideResponse response = new SlideResponse();
         response.setId(savedEntity.getId());
@@ -46,5 +49,20 @@ OrganizationRepository organizationRepository;
         response.setOrganizationId(savedEntity.getOrganizationId());
         response.setTimestamps(savedEntity.getTimestamp());
         return response;
+    }
+
+    public SlideBasicResponse slideEntity2SlideBasicResponse(SlideEntity slideEntity) {
+        SlideBasicResponse response = new SlideBasicResponse();
+        response.setImageUrl(slideEntity.getImageUrl());
+        response.setSlideOrder(slideEntity.getSliceOrder());
+        return response;
+    }
+
+    public List<SlideBasicResponse> slideEntitiesList2SlideBasicResponseList(List<SlideEntity> slideEntities) {
+        List<SlideBasicResponse> responses = new ArrayList<>();
+        for (SlideEntity slideEntity : slideEntities) {
+            responses.add(slideEntity2SlideBasicResponse(slideEntity));
+        }
+        return responses;
     }
 }
