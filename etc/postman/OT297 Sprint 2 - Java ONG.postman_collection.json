@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "31900724-48d3-4cd9-b17c-a4d70e39de33",
+		"_postman_id": "927ff763-0954-4cca-ad21-c13dff5dd85a",
 		"name": "OT297 Sprint 2 - Java ONG",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19677470"
+		"_exporter_id": "22500799"
 	},
 	"item": [
 		{
@@ -242,7 +242,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQzMTE1NDAsImV4cCI6MTY2NDM3MjAyMH0.49EQ4HI8KW8Vle4ddTzQeEa5uZ24bSG0P16qoLi6IvqI24oB39PcpdQey26FNbt_2GAqLA3NVHtKC6wuvskkPQ",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQ0NzE5NjksImV4cCI6MTY2NDUzMjQ0OX0.wuLnAKc0H53BjBK-cKrc2JqFn4BrxKMgy8nfdTijphq1XEIbb3zzwCxErnw01URuza5wbK-7f4W2EM5VRmeZ_w",
 									"type": "string"
 								}
 							]
@@ -286,7 +286,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQzMTEzNzIsImV4cCI6MTY2NDM3MTg1Mn0.UBJYMzzsPjUKGf5r1197g0eFuULlZqOma750HlwLEiDqQnsiD7dLPidDGjIx42DxRc_gbrlePTcCnbukiXg8BQ",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQ0NzE5NjksImV4cCI6MTY2NDUzMjQ0OX0.wuLnAKc0H53BjBK-cKrc2JqFn4BrxKMgy8nfdTijphq1XEIbb3zzwCxErnw01URuza5wbK-7f4W2EM5VRmeZ_w",
 									"type": "string"
 								}
 							]
@@ -295,7 +295,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"imageUrl\": \"/img/picture.jpg\",\r\n    \"text\": \"my text\",\r\n    \"slideOrder\": 20,\r\n    \"organizationId\": 1\r\n\r\n}",
+							"raw": "{\r\n    \"imageUrl\": \"/img/picture.jpg\",\r\n    \"text\": \"my text\",\r\n    \"slideOrder\": 20,\r\n    \"organizationId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -311,6 +311,57 @@
 							"port": "8080",
 							"path": [
 								"slides"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "slides (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQ0NzE5NjksImV4cCI6MTY2NDUzMjQ0OX0.wuLnAKc0H53BjBK-cKrc2JqFn4BrxKMgy8nfdTijphq1XEIbb3zzwCxErnw01URuza5wbK-7f4W2EM5VRmeZ_w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}slides",
+							"host": [
+								"{{base_url}}slides"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "slides/id (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0YS1lbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE2NjQ0NzQ3MDMsImV4cCI6MTY2NDUzNTE4M30.nRgq-5aE6cBBoq0t863wySUixWeG7EcQ5Cuqhe9rO1clw6IHWneqfGlGJ-CYTBDWXWrHwgTVeeE0qUQ0qqub2w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}slides/1",
+							"host": [
+								"{{base_url}}slides"
+							],
+							"path": [
+								"1"
 							]
 						}
 					},
