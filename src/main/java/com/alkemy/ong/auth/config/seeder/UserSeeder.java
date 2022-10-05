@@ -1,13 +1,7 @@
 package com.alkemy.ong.auth.config.seeder;
 
-import com.alkemy.ong.models.entity.CategoryEntity;
-import com.alkemy.ong.models.entity.OrganizationEntity;
-import com.alkemy.ong.models.entity.RoleEntity;
-import com.alkemy.ong.models.entity.UserEntity;
-import com.alkemy.ong.repository.CategoryRepository;
-import com.alkemy.ong.repository.OrganizationRepository;
-import com.alkemy.ong.repository.RoleRepository;
-import com.alkemy.ong.repository.UserRepository;
+import com.alkemy.ong.models.entity.*;
+import com.alkemy.ong.repository.*;
 import com.alkemy.ong.utils.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -34,6 +28,8 @@ public class UserSeeder implements CommandLineRunner {
     OrganizationRepository organizationRepository;
     @Autowired
     CategoryRepository categoryRepository;
+    @Autowired
+    NewsRepository newsRepository;
 
     private static final System.Logger LOGGER = System.getLogger("Mi log");
 
@@ -43,6 +39,7 @@ public class UserSeeder implements CommandLineRunner {
         this.loadSeedersUsers();
         this.loadSeedersOrganization();
         this.loadSeedersCategories();
+        this.loadSeedersNews();
     }
 
     private void loadSeedersUsers() {
@@ -93,6 +90,13 @@ public class UserSeeder implements CommandLineRunner {
         }
     }
 
+    private void loadSeedersNews() {
+        if (newsRepository.findAll().isEmpty()){
+            newsRepository.save(new NewEntity("Dog A","Description One","/img/juan.jpg", 1L));
+            newsRepository.save(new NewEntity("Dog B","Description Two","/img/guille.jpg", 2L));
+            newsRepository.save(new NewEntity("Dog C","Description three","/img/leo.jpg", 3L));
+        }
+    }
 
 
 

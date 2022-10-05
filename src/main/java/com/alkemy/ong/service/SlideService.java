@@ -10,6 +10,8 @@ import java.util.List;
 
 import java.io.IOException;
 
+import java.io.IOException;
+
 public interface SlideService {
 
     public SlideResponse save(SlideRequest slide) throws IOException;
