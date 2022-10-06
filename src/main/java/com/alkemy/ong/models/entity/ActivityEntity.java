@@ -43,6 +43,10 @@ public class ActivityEntity {
         this.image = image;
     }
 
+    public ActivityEntity() {
+
+    }
+
 //    @PrePersist
 //    void persist() {
 //        setTimestamps(LocalDateTime.now());
