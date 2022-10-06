@@ -37,6 +37,12 @@ public class ActivityEntity {
     @Column(name = "deleted", nullable = false)
     private boolean deleted = Boolean.FALSE;
 
+    public ActivityEntity(String name, String content, String image) {
+        this.name = name;
+        this.content = content;
+        this.image = image;
+    }
+
 //    @PrePersist
 //    void persist() {
 //        setTimestamps(LocalDateTime.now());
