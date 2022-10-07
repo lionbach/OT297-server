@@ -44,6 +44,7 @@ public class UserSeeder implements CommandLineRunner {
         this.loadSeedersOrganization();
         this.loadSeedersCategories();
         this.loadSeedersNews();
+        this.loadSeedersSlides();
         this.loadSeedersTestimonials();
     }
 
@@ -109,6 +110,14 @@ public class UserSeeder implements CommandLineRunner {
         if (testimonialRepository.findAll().isEmpty()) {
             testimonialRepository.save(new TestimonialEntity("Mejoras", "imagen.jpg", "Hemos mejorado nuestra página!"));
             testimonialRepository.save(new TestimonialEntity("Inclusivos", "imagen2.jpg", "Ahora hay lugar para todos!"));
+        }
+    }
+
+    private void loadSeedersSlides() {
+        if (slideRepository.findAll().isEmpty()) {
+            slideRepository.save(new SlideEntity("image1.jpg", "text1", 1, 1L));
+            slideRepository.save(new SlideEntity("image2.jpg", "text2", 2, 1L));
+            slideRepository.save(new SlideEntity("image3.jpg", "text3", 1, 2L));
         }
     }
 }

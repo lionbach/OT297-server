@@ -1,5 +1,6 @@
 package com.alkemy.ong.controller;
 
+import com.alkemy.ong.models.entity.SlideEntity;
 import com.alkemy.ong.models.request.SlideRequest;
 import com.alkemy.ong.models.response.SlideBasicResponse;
 import com.alkemy.ong.models.response.SlideResponse;
@@ -34,5 +35,15 @@ public class SlideController {
     @GetMapping("/{id}")
     public ResponseEntity<SlideResponse> getSlide(@RequestHeader(name = "Authorization") @PathVariable Long id) throws IOException {
         return slideService.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSlide(@RequestHeader(name = "Authorization") @PathVariable Long id) throws IOException {
+        return slideService.delete(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<SlideResponse> updateSlide(@Valid @PathVariable @RequestHeader(name = "Authorization") Long id, @RequestBody SlideRequest request) throws IOException {
+        return slideService.update(id, request);
     }
 }
