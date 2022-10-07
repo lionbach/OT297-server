@@ -88,7 +88,7 @@ public class UserSeeder implements CommandLineRunner {
 
     private void loadSeedersOrganization() {
         if (organizationRepository.findAll().isEmpty()){
-            organizationRepository.save(new OrganizationEntity("ONG Somos Mas","/img/logo.jpg","street A 123", "01187654321","somos_mas@gmail.com","Welcome Text","About Us Text"));
+            organizationRepository.save(new OrganizationEntity("ONG Somos Mas","/img/logo.jpg","street A 123", "01187654321","somos_mas@gmail.com","Welcome Text","About Us Text","facebook link","instagram link","linkedin link"));
         }
     }
     private void loadSeedersCategories() {

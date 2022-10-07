@@ -21,4 +21,7 @@ public class OrganizationRequest {
     private String email;
     private String welcomeText;
     private String aboutUsText;
+    private String urlFacebook;
+    private String urlInstagram;
+    private String urlLinkedin;
 }
