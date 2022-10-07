@@ -28,9 +28,21 @@ public class TestimonialServiceImpl implements TestimonialService {
 
     @Override
     public TestimonialResponse update(TestimonialRequest request, Long id) {
-            TestimonialEntity entity = testimonialRepository.findById(id).orElseThrow();
-            TestimonialEntity entitySaved = testimonialRepository.save(entity);
-            TestimonialResponse response = testimonialMapper.testimonialEntity2TestimonialResponse(entitySaved);
+        TestimonialEntity entity = testimonialRepository.findById(id).orElseThrow();
+        if (request.getImage() != null && !request.getImage().isEmpty() && !request.getImage().isBlank()) {
+            entity.setImage(request.getImage());
+        }
+        entity.setName(request.getName());
+        entity.setContent(request.getContent());
+        TestimonialEntity entitySaved = testimonialRepository.save(entity);
+        TestimonialResponse response = testimonialMapper.testimonialEntity2TestimonialResponse(entitySaved);
         return response;
+    }
+
+    @Override
+    public void delete(Long id) {
+        if (!testimonialRepository.existsById(id))
+            throw new GenericException(HttpStatus.NOT_FOUND, "id not exist", "The testimonial to delete does not exist");
+        testimonialRepository.deleteById(id);
     }
 }

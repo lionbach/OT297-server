@@ -7,4 +7,6 @@ public interface TestimonialService {
     TestimonialResponse save(TestimonialRequest request);
 
     TestimonialResponse update(TestimonialRequest request, Long id);
+
+    void delete(Long id);
 }

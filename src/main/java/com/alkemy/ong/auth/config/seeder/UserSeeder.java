@@ -44,7 +44,6 @@ public class UserSeeder implements CommandLineRunner {
         this.loadSeedersOrganization();
         this.loadSeedersCategories();
         this.loadSeedersNews();
-        this.loadSeedersSlides();
         this.loadSeedersTestimonials();
     }
 
@@ -103,14 +102,6 @@ public class UserSeeder implements CommandLineRunner {
             newsRepository.save(new NewEntity("Dog A", "Description One", "/img/juan.jpg", 1L));
             newsRepository.save(new NewEntity("Dog B", "Description Two", "/img/guille.jpg", 2L));
             newsRepository.save(new NewEntity("Dog C", "Description three", "/img/leo.jpg", 3L));
-        }
-    }
-
-    private void loadSeedersSlides() {
-        if (slideRepository.findAll().isEmpty()) {
-            slideRepository.save(new SlideEntity("image1.jpg", "One slide", 1, 1L));
-            slideRepository.save(new SlideEntity("image2.jpg", "Another Slide", 2, 1L));
-            slideRepository.save(new SlideEntity("image3.jpg", "Also Another Slide", 1, 2L));
         }
     }
 
