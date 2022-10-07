@@ -4,7 +4,6 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -17,6 +16,7 @@ import java.sql.Timestamp;
 @Setter
 @SQLDelete(sql = "UPDATE slides SET deleted = true Where id=?")
 @Where(clause = "deleted=false")
+@NoArgsConstructor
 public class SlideEntity {
 
     @Id
@@ -32,8 +32,7 @@ public class SlideEntity {
     private String text;
 
     @NotNull
-    @Column(unique=true)
-    private Integer sliceOrder;
+    private Integer slideOrder;
 
 
     // definimos la relacion slice-organization
@@ -58,4 +57,10 @@ public class SlideEntity {
     @CreationTimestamp
     private Timestamp timestamp;
 
+    public SlideEntity(String imageUrl, String text, Integer slideOrder, Long organizationId) {
+        this.imageUrl = imageUrl;
+        this.text = text;
+        this.slideOrder = slideOrder;
+        this.organizationId = organizationId;
+    }
 }

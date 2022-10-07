@@ -37,7 +37,7 @@ AwsService awsService;
         SlideEntity entity = new SlideEntity();
         entity.setImageUrl(awsService.uploadFileFromBase64(slide.getImageUrl()));
         entity.setText(slide.getText());
-        entity.setSliceOrder(slide.getSlideOrder());
+        entity.setSlideOrder(slide.getSlideOrder());
         entity.setOrganization(OptionalOrganizationEntity.get());
         entity.setOrganizationId(slide.getOrganizationId());
 
@@ -50,7 +50,7 @@ AwsService awsService;
         response.setId(savedEntity.getId());
         response.setImageUrl(savedEntity.getImageUrl());
         response.setText(savedEntity.getText());
-        response.setSlideOrder(savedEntity.getSliceOrder());
+        response.setSlideOrder(savedEntity.getSlideOrder());
         response.setOrganization(organizationMapper.organizationsEntity2OrganizationsResponse(savedEntity.getOrganization()));
         response.setOrganizationId(savedEntity.getOrganizationId());
         response.setTimestamps(savedEntity.getTimestamp());
@@ -60,7 +60,7 @@ AwsService awsService;
     public SlideBasicResponse slideEntity2SlideBasicResponse(SlideEntity slideEntity) {
         SlideBasicResponse response = new SlideBasicResponse();
         response.setImageUrl(slideEntity.getImageUrl());
-        response.setSlideOrder(slideEntity.getSliceOrder());
+        response.setSlideOrder(slideEntity.getSlideOrder());
         return response;
     }
 

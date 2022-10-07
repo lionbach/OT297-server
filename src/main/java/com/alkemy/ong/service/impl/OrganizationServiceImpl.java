@@ -22,7 +22,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public OrganizationResponse save(OrganizationRequest organization) {
-        OrganizationEntity entity = OrganizationMapper.organizationsRequest2OrganizationsEntity(organization);
+        OrganizationEntity entity = organizationMapper.organizationsRequest2OrganizationsEntity(organization);
         OrganizationEntity savedEntity = organizationRepository.save(entity);
         OrganizationResponse response = organizationMapper.organizationsEntity2OrganizationsResponse(savedEntity);
         return response;

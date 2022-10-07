@@ -29,9 +29,9 @@ public class SlideServiceImpl implements SlideService {
     public SlideResponse save(SlideRequest slide) throws IOException {
         SlideEntity entity = slideMapper.slideRequest2SlideEntity(slide);
         //verify order
-        if (entity.getSliceOrder() == null || entity.getSliceOrder() == 0) {
+        if (entity.getSlideOrder() == null || entity.getSlideOrder() == 0) {
             List<SlideEntity> listEntitys = slideRepository.findAll(Sort.by(Sort.Direction.DESC, "sliceOrder"));
-            entity.setSliceOrder(listEntitys.get(0).getSliceOrder() + 1);
+            entity.setSlideOrder(listEntitys.get(0).getSlideOrder() + 1);
         }
         SlideEntity savedEntity = slideRepository.save(entity);
         SlideResponse response = slideMapper.slideEntity2SlideResponse(savedEntity);

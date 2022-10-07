@@ -30,6 +30,10 @@ public class UserSeeder implements CommandLineRunner {
     CategoryRepository categoryRepository;
     @Autowired
     NewsRepository newsRepository;
+    @Autowired
+    TestimonialRepository testimonialRepository;
+    @Autowired
+    SlideRepository slideRepository;
 
     private static final System.Logger LOGGER = System.getLogger("Mi log");
 
@@ -40,6 +44,8 @@ public class UserSeeder implements CommandLineRunner {
         this.loadSeedersOrganization();
         this.loadSeedersCategories();
         this.loadSeedersNews();
+        this.loadSeedersSlides();
+        this.loadSeedersTestimonials();
     }
 
     private void loadSeedersUsers() {
@@ -78,26 +84,40 @@ public class UserSeeder implements CommandLineRunner {
     }
 
     private void loadSeedersOrganization() {
-        if (organizationRepository.findAll().isEmpty()){
-            organizationRepository.save(new OrganizationEntity("ONG Somos Mas","/img/logo.jpg","street A 123", "01187654321","somos_mas@gmail.com","Welcome Text","About Us Text"));
+        if (organizationRepository.findAll().isEmpty()) {
+            organizationRepository.save(new OrganizationEntity("ONG Somos Mas", "/img/logo.jpg", "street A 123", "01187654321", "somos_mas@gmail.com", "Welcome Text", "About Us Text"));
+            organizationRepository.save(new OrganizationEntity("ONG Por Los Pibes", "/img/logo2.jpg", "P. Sherman Calle Wallaby 42, Sidney", "01165598001", "por_los_pibes@gmail.com", "Welcome Text 2", "About Us Text 2"));
         }
     }
+
     private void loadSeedersCategories() {
-        if (categoryRepository.findAll().isEmpty()){
-            categoryRepository.save(new CategoryEntity("Cat A","Description AAA","/img/a.jpg"));
-            categoryRepository.save(new CategoryEntity("Cat B","Description BBB","/img/b.jpg"));
-            categoryRepository.save(new CategoryEntity("Cat C","Description CCC","/img/c.jpg"));
+        if (categoryRepository.findAll().isEmpty()) {
+            categoryRepository.save(new CategoryEntity("Cat A", "Description AAA", "/img/a.jpg"));
+            categoryRepository.save(new CategoryEntity("Cat B", "Description BBB", "/img/b.jpg"));
+            categoryRepository.save(new CategoryEntity("Cat C", "Description CCC", "/img/c.jpg"));
         }
     }
 
     private void loadSeedersNews() {
-        if (newsRepository.findAll().isEmpty()){
-            newsRepository.save(new NewEntity("Dog A","Description One","/img/juan.jpg", 1L));
-            newsRepository.save(new NewEntity("Dog B","Description Two","/img/guille.jpg", 2L));
-            newsRepository.save(new NewEntity("Dog C","Description three","/img/leo.jpg", 3L));
+        if (newsRepository.findAll().isEmpty()) {
+            newsRepository.save(new NewEntity("Dog A", "Description One", "/img/juan.jpg", 1L));
+            newsRepository.save(new NewEntity("Dog B", "Description Two", "/img/guille.jpg", 2L));
+            newsRepository.save(new NewEntity("Dog C", "Description three", "/img/leo.jpg", 3L));
         }
     }
 
+    private void loadSeedersSlides() {
+        if (slideRepository.findAll().isEmpty()) {
+            slideRepository.save(new SlideEntity("image1.jpg", "One slide", 1, 1L));
+            slideRepository.save(new SlideEntity("image2.jpg", "Another Slide", 2, 1L));
+            slideRepository.save(new SlideEntity("image3.jpg", "Also Another Slide", 1, 2L));
+        }
+    }
 
-
+    private void loadSeedersTestimonials() {
+        if (testimonialRepository.findAll().isEmpty()) {
+            testimonialRepository.save(new TestimonialEntity("Mejoras", "imagen.jpg", "Hemos mejorado nuestra página!"));
+            testimonialRepository.save(new TestimonialEntity("Inclusivos", "imagen2.jpg", "Ahora hay lugar para todos!"));
+        }
+    }
 }
