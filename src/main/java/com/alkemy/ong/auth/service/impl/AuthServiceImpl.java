@@ -12,6 +12,7 @@ import com.alkemy.ong.models.response.UserRegisterResponse;
 import com.alkemy.ong.models.response.UserResponse;
 import com.alkemy.ong.repository.RoleRepository;
 import com.alkemy.ong.repository.UserRepository;
+import com.alkemy.ong.service.EmailService;
 import com.alkemy.ong.utils.AuthenticationErrorEnum;
 import com.alkemy.ong.utils.RoleEnum;
 import org.jetbrains.annotations.NotNull;
@@ -39,6 +40,8 @@ public class AuthServiceImpl implements AuthService {
     JwtTokenProvider jwtTokenProvider;
     @Autowired
     AuthenticationManager authenticationManager;
+    @Autowired
+    EmailService emailService;
 
     @Override
     public UserRegisterResponse register(@NotNull UserRegisterRequest userRegisterRequest) {
@@ -51,12 +54,14 @@ public class AuthServiceImpl implements AuthService {
         }
         UserEntity userEntity = userMapper.userRegisterRequest2UserEntity(userRegisterRequest, roleEntities);
         userEntity = userRepository.save(userEntity);
+        emailService.sendEmailTo(userEntity.getEmail(), 1);
         UserRegisterResponse userRegisterResponse = userMapper.userEntity2UserRegisterResponse(userEntity,
                 jwtTokenProvider.generateToken(authenticationManager.authenticate(
                         new UsernamePasswordAuthenticationToken(userRegisterRequest.getEmail(), userRegisterRequest.getPassword()))));
         return userRegisterResponse;
     }
-/*EL login en el caso de ingresar un password incorrecto, tira un ok: false,pero con 200*/
+
+    /*EL login en el caso de ingresar un password incorrecto, tira un ok: false,pero con 200*/
     @Override
     public UserLoginResponse login(String email, String password) throws Exception {
         try {
@@ -77,7 +82,7 @@ public class AuthServiceImpl implements AuthService {
 
     // getUserEntityByToken also is using in UserController.delete(token)
     @Override
-    public UserEntity getUserEntityByToken(String token){
+    public UserEntity getUserEntityByToken(String token) {
         token = token.replace("Bearer ", "");
         String email = jwtTokenProvider.getJWTUsername(token);
         UserEntity userEntity = userRepository.findByEmail(email).orElseThrow(
@@ -94,8 +99,8 @@ public class AuthServiceImpl implements AuthService {
         Long tokenId = entity.getId();
         boolean tokenIsAdmin = false;
         Set<RoleEntity> tokenRoles = entity.getRoleEntityId();
-        for (RoleEntity role : tokenRoles){
-            if (role.getName().equals("ROLE_ADMIN")){
+        for (RoleEntity role : tokenRoles) {
+            if (role.getName().equals("ROLE_ADMIN")) {
                 tokenIsAdmin = true;
             }
         }
