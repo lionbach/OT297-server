@@ -19,7 +19,7 @@ public class CategoryMapper {
     AwsService awsService;
     @Autowired
     CategoryRepository categoryRepository;
-    public CategoryEntity categoryRequest2CategoryEntity(CategoryRequest categoryRequest) throws IOException {
+    public CategoryEntity categoryRequest2CategoryEntity(CategoryRequest categoryRequest) {
         CategoryEntity categoryEntity = new CategoryEntity();
         categoryEntity.setName(categoryRequest.getName());
         categoryEntity.setImage(awsService.uploadFileFromBase64(categoryRequest.getImage()));
@@ -37,7 +37,7 @@ public class CategoryMapper {
         return categoryResponse;
     }
 
-    public CategoryEntity categoryRequest2CategoryUpdateEntity(CategoryRequest categoryRequest, Long id) throws IOException {
+    public CategoryEntity categoryRequest2CategoryUpdateEntity(CategoryRequest categoryRequest, Long id) {
 
         CategoryEntity categoryEntity = categoryRequest2CategoryEntity(categoryRequest);
         categoryEntity.setId(id);
