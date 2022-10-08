@@ -1,5 +1,7 @@
 package com.alkemy.ong.service;
 
 public interface EmailService {
-    void sendEmailTo(String emailTo, Integer object);
+    void sendRegisterMail(String email);
+    void sendContactMail(String email);
+
 }

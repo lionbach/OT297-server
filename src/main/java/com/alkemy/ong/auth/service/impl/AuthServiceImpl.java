@@ -54,7 +54,7 @@ public class AuthServiceImpl implements AuthService {
         }
         UserEntity userEntity = userMapper.userRegisterRequest2UserEntity(userRegisterRequest, roleEntities);
         userEntity = userRepository.save(userEntity);
-        emailService.sendEmailTo(userEntity.getEmail(), 1);
+        emailService.sendRegisterMail(userEntity.getEmail());
         UserRegisterResponse userRegisterResponse = userMapper.userEntity2UserRegisterResponse(userEntity,
                 jwtTokenProvider.generateToken(authenticationManager.authenticate(
                         new UsernamePasswordAuthenticationToken(userRegisterRequest.getEmail(), userRegisterRequest.getPassword()))));

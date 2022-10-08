@@ -1,10 +1,12 @@
 package com.alkemy.ong.service.impl;
 
+import com.alkemy.ong.exception.GenericException;
 import com.alkemy.ong.service.EmailService;
 import com.sendgrid.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -14,54 +16,40 @@ public class EmailServiceImpl implements EmailService {
 
     @Autowired
     private Environment env;
-
     @Value("${ORGANIZATION_ID}")
     private String emailSender;
-
     @Value("${SENDGRID_API_KEY}")
     private String apiKey;
-
     @Value("${TEMPLATE_ID}")
-    private String templateRegister;
-
+    private String templateRegisterId;
     @Value("${TEMPLATE_ID_CONTACT}")
-    private String templateContact;
-
+    private String templateContactId;
     @Value("${alkemy.ong.email.enabled}")
-    private boolean enabled;
+    private boolean enabledMailService;
 
-    @Override
-    public void sendEmailTo(String emailTo, Integer object) {
-        if (!enabled) {
-            return;
-        }
-        Email fromEmail = new Email(emailSender);
-        Email toEmail = new Email(emailTo);
-        Content content;
-        String subject;
-        switch (object) {
-            case 1:
-                content = new Content(
-                        "text/html",
-                        "Welcome to ONG Somos Mas!");
-                subject = "WELCOME";
-                break;
-            case 2:
-                content = new Content("text/html", "You've contacted us, we will answer you as soon as posible");
-                subject = "You've contacted with ONG Somos Mas";
-                break;
-            default:
-                content = new Content(
-                        "",
-                        "");
-                subject = "";
-                break;
-        }
-        setEmail(fromEmail, toEmail, content, subject);
+
+    public void sendRegisterMail(String email){
+        filterEmail(email, templateRegisterId);
     }
 
-    private void setEmail(Email fromEmail, Email toEmail, Content content, String subject) {
+    public void sendContactMail(String email){
+        filterEmail(email, templateContactId);
+    }
+
+    private void filterEmail(String emailTo, String templateId) {
+        if (!enabledMailService) {
+            return;
+        }
+        setEmail(emailTo, templateId);
+    }
+
+    private void setEmail(String emailTo, String templateId){
+        Email fromEmail = new Email(emailSender);
+        Email toEmail = new Email(emailTo);
+        Content content = new Content("text/html", "xxx");
+        String subject = "xxx";
         Mail mail = new Mail(fromEmail, subject, toEmail, content);
+        mail.setTemplateId(templateId);
         SendGrid sg = new SendGrid(apiKey);
         Request request = new Request();
         sendEmail(mail, sg, request);
@@ -73,11 +61,15 @@ public class EmailServiceImpl implements EmailService {
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
             Response response = sg.api(request);
+            System.out.println("------------------  SENDGRID  ----------------------");
             System.out.println(response.getStatusCode());
             System.out.println(response.getBody());
             System.out.println(response.getHeaders());
+            System.out.println("----------------------------------------------------");
         } catch (IOException ex) {
-            System.out.println("Error trying to send the email");
+            throw new GenericException(HttpStatus.INTERNAL_SERVER_ERROR, "Error trying to send the email", ex.getMessage());
         }
     }
+
+
 }
