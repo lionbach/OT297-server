@@ -72,4 +72,5 @@ public class OrganizationEntity {
         this.urlInstagram = urlInstagram;
         this.urlLinkedin = urlLinkedin;
     }
+
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrganizationMapper {
-    public static OrganizationEntity organizationsRequest2OrganizationsEntity(OrganizationRequest organization) {
+    public OrganizationEntity organizationsRequest2OrganizationsEntity(OrganizationRequest organization) {
         OrganizationEntity entity = new OrganizationEntity();
         entity.setName(organization.getName());
         entity.setImage(organization.getImage());
