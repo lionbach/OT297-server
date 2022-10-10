@@ -96,6 +96,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/testimonials/{id}").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
                 .antMatchers(HttpMethod.DELETE, "/testimonials/{id}").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
 
+                //comments
+                .antMatchers(HttpMethod.GET, "/comments").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
+
                 /*agregar autorizaciones a los endpoints pendientes en desarrollo
 
                  *EJEMPLO:

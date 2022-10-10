@@ -34,6 +34,8 @@ public class UserSeeder implements CommandLineRunner {
     TestimonialRepository testimonialRepository;
     @Autowired
     SlideRepository slideRepository;
+    @Autowired
+    CommentRepository commentRepository;
 
     private static final System.Logger LOGGER = System.getLogger("Mi log");
 
@@ -46,6 +48,7 @@ public class UserSeeder implements CommandLineRunner {
         this.loadSeedersNews();
         this.loadSeedersSlides();
         this.loadSeedersTestimonials();
+        this.loadSeedersComments();
     }
 
     private void loadSeedersUsers() {
@@ -118,6 +121,14 @@ public class UserSeeder implements CommandLineRunner {
             slideRepository.save(new SlideEntity("image1.jpg", "text1", 1, 1L));
             slideRepository.save(new SlideEntity("image2.jpg", "text2", 2, 1L));
             slideRepository.save(new SlideEntity("image3.jpg", "text3", 1, 2L));
+        }
+    }
+
+    private void loadSeedersComments() {
+        if (commentRepository.findAll().isEmpty()) {
+            commentRepository.save(new CommentEntity(1L, 1L, "Muy buena la ONG!"));
+            commentRepository.save(new CommentEntity(2L, 2L, "Unos capos!"));
+            commentRepository.save(new CommentEntity(2L, 2L, "Grosos!"));
         }
     }
 }

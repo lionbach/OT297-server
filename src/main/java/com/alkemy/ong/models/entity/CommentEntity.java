@@ -3,8 +3,10 @@ package com.alkemy.ong.models.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "comments")
@@ -32,6 +34,10 @@ public class CommentEntity {
 
     @Column(name = "body", nullable = false, columnDefinition = "TEXT")
     private String body;
+
+    @Column(nullable = false)
+    @CreationTimestamp
+    private Timestamp timestamps;
 
     public CommentEntity(Long userId, Long newsId, String body) {
         this.userId = userId;
