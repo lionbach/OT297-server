@@ -24,32 +24,31 @@ public class CategoryController {
 
     @PostMapping
     public ResponseEntity<CategoryResponse> save(@Valid @RequestBody CategoryRequest categoryRequest) throws IOException {
-        CategoryResponse categorySavedResponse  = categoryService.save(categoryRequest);
+        CategoryResponse categorySavedResponse = categoryService.save(categoryRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(categorySavedResponse);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponse> update(@Valid @RequestBody CategoryRequest categoryRequest, @PathVariable Long id ) throws IOException {
-        CategoryResponse categoryUpdatedResponse  = categoryService.update(categoryRequest, id);
+    public ResponseEntity<CategoryResponse> update(@Valid @RequestBody CategoryRequest categoryRequest, @PathVariable Long id) throws IOException {
+        CategoryResponse categoryUpdatedResponse = categoryService.update(categoryRequest, id);
         return ResponseEntity.status(HttpStatus.OK).body(categoryUpdatedResponse);
     }
 
     @GetMapping()
-    public ResponseEntity<List<CategoryOnlyNameResponse>> listCategories(){
-        List<CategoryOnlyNameResponse> categoriesResponse  = categoryService.listCategories();
+    public ResponseEntity<List<CategoryOnlyNameResponse>> listCategories() {
+        List<CategoryOnlyNameResponse> categoriesResponse = categoryService.listCategories();
         return ResponseEntity.status(HttpStatus.OK).body(categoriesResponse);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryResponse> getCategory(@PathVariable Long id){
-        CategoryResponse categoryResponse  = categoryService.getCategory(id);
+    public ResponseEntity<CategoryResponse> getCategory(@PathVariable Long id) {
+        CategoryResponse categoryResponse = categoryService.getCategory(id);
         return ResponseEntity.status(HttpStatus.OK).body(categoryResponse);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCategory(@PathVariable Long id){
+    public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
         categoryService.deleteCategory(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
 }

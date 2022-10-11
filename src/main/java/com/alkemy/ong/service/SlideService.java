@@ -20,4 +20,7 @@ public interface SlideService {
 
     ResponseEntity<SlideResponse> findById(Long id) throws IOException;
 
+    ResponseEntity<Void> delete(Long id);
+
+    ResponseEntity<SlideResponse> update(Long id, SlideRequest request);
 }

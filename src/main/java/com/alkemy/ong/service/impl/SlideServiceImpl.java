@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SlideServiceImpl implements SlideService {
@@ -29,9 +30,9 @@ public class SlideServiceImpl implements SlideService {
     public SlideResponse save(SlideRequest slide) throws IOException {
         SlideEntity entity = slideMapper.slideRequest2SlideEntity(slide);
         //verify order
-        if (entity.getSliceOrder() == null || entity.getSliceOrder() == 0) {
+        if (entity.getSlideOrder() == null || entity.getSlideOrder() == 0) {
             List<SlideEntity> listEntitys = slideRepository.findAll(Sort.by(Sort.Direction.DESC, "sliceOrder"));
-            entity.setSliceOrder(listEntitys.get(0).getSliceOrder() + 1);
+            entity.setSlideOrder(listEntitys.get(0).getSlideOrder() + 1);
         }
         SlideEntity savedEntity = slideRepository.save(entity);
         SlideResponse response = slideMapper.slideEntity2SlideResponse(savedEntity);
@@ -54,5 +55,56 @@ public class SlideServiceImpl implements SlideService {
             response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return response;
+    }
+
+
+    @Override
+    public ResponseEntity<Void> delete(Long id) {
+        SlideEntity slideEntity = slideRepository.findById(id).orElseThrow();
+        ResponseEntity<Void> response;
+        if (slideEntity == null) {
+            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            response = ResponseEntity.status(HttpStatus.OK).build();
+            slideRepository.deleteById(id);
+        }
+        return response;
+    }
+
+    @Override
+    public ResponseEntity<SlideResponse> update(Long id, SlideRequest request) {
+        Optional<SlideEntity> slideEntity = slideRepository.findById(id);
+        ResponseEntity<SlideResponse> response;
+        if (slideEntity.isEmpty()) {
+            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            SlideEntity slideEntityOk = slideEntity.get();
+            if (validInput(request.getImageUrl())) {
+                slideEntityOk.setImageUrl(request.getImageUrl());
+            }
+            if (validInput(request.getText())) {
+                slideEntityOk.setText(request.getText());
+            }
+            if (validInteger(request.getSlideOrder())) {
+                slideEntityOk.setSlideOrder(request.getSlideOrder());
+            }
+            if (validLong(request.getOrganizationId())) {
+                slideEntityOk.setOrganizationId(request.getOrganizationId());
+            }
+            response = ResponseEntity.status(HttpStatus.OK).body(slideMapper.slideEntity2SlideResponse(slideRepository.save(slideEntityOk)));
+        }
+        return response;
+    }
+
+    private boolean validInput(String input) {
+        return (input != null && !input.isEmpty() && !input.isBlank());
+    }
+
+    public boolean validInteger(Integer input) {
+        return input != null && input != 0;
+    }
+
+    public boolean validLong(Long input) {
+        return input != null && input != 0;
     }
 }
