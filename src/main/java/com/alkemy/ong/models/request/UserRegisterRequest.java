@@ -1,17 +1,17 @@
 package com.alkemy.ong.models.request;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class UserRegisterRequest {
     @NotNull(message = "cannot be null")
     @NotEmpty(message = "cannot be empty")
