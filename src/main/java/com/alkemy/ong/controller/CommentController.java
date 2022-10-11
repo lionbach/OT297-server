@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
@@ -30,5 +31,10 @@ public class CommentController {
     public ResponseEntity<CommentResponse> create(@RequestBody @Valid CommentRequest commentRequest) throws IOException {
         CommentResponse response = commentService.save(commentRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CommentResponse> update(@Valid @PathVariable Long id, @RequestBody CommentRequest commentRequest,  HttpServletRequest request) throws IOException{
+        return commentService.update(id, commentRequest, request.getHeader("Authorization"));
     }
 }
