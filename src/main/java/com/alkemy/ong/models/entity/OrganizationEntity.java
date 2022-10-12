@@ -55,7 +55,12 @@ public class OrganizationEntity {
     @CreationTimestamp
     private Timestamp timestamps;
 
-    public OrganizationEntity(String name, String image, String address, String phone, String email, String welcomeText, String aboutUsText) {
+    private String urlFacebook;
+    private String urlInstagram;
+    private String urlLinkedin;
+
+    public OrganizationEntity(String name, String image, String address, String phone, String email, String welcomeText, String aboutUsText,
+                              String urlFacebook, String urlInstagram, String urlLinkedin) {
         this.name = name;
         this.image = image;
         this.address = address;
@@ -63,5 +68,9 @@ public class OrganizationEntity {
         this.email = email;
         this.welcomeText = welcomeText;
         this.aboutUsText = aboutUsText;
+        this.urlFacebook = urlFacebook;
+        this.urlInstagram = urlInstagram;
+        this.urlLinkedin = urlLinkedin;
     }
+
 }

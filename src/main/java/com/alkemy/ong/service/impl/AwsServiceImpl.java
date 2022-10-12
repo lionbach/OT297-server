@@ -36,7 +36,7 @@ public class AwsServiceImpl implements AwsService {
 
     }
 
-    private String uploadFile(MultipartFile multipartFile) throws IOException {
+    private String uploadFile(MultipartFile multipartFile) {
 
         File fileCreated = awsUtils.convertMultiPartToFile(multipartFile);
         String fileName = multipartFile.getOriginalFilename();
@@ -47,7 +47,7 @@ public class AwsServiceImpl implements AwsService {
     }
 
     @Override
-    public String uploadFileFromBase64(String base64) throws IOException {
+    public String uploadFileFromBase64(String base64) {
         if (base64 == null)
             return null;
         if (base64.contains("data:image/")) {

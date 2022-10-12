@@ -17,6 +17,9 @@ public class OrganizationMapper {
         entity.setEmail(organization.getEmail());
         entity.setWelcomeText(organization.getWelcomeText());
         entity.setAboutUsText(organization.getAboutUsText());
+        entity.setUrlFacebook(organization.getUrlFacebook());
+        entity.setUrlInstagram(organization.getUrlInstagram());
+        entity.setUrlLinkedin(organization.getUrlLinkedin());
         return entity;
     }
 
@@ -27,6 +30,9 @@ public class OrganizationMapper {
         response.setImage(entity.getImage());
         response.setAddress(entity.getAddress());
         response.setPhone(entity.getPhone());
+        response.setUrlFacebook(entity.getUrlFacebook());
+        response.setUrlInstagram(entity.getUrlInstagram());
+        response.setUrlLinkedin(entity.getUrlLinkedin());
         return response;
     }
 
@@ -40,6 +46,9 @@ public class OrganizationMapper {
         response.setEmail(savedEntity.getEmail());
         response.setWelcomeText(savedEntity.getWelcomeText());
         response.setAboutUsText(savedEntity.getAboutUsText());
+        response.setUrlFacebook(savedEntity.getUrlFacebook());
+        response.setUrlInstagram(savedEntity.getUrlInstagram());
+        response.setUrlLinkedin(savedEntity.getUrlLinkedin());
         response.setTimestamps(savedEntity.getTimestamps());
         return response;
     }

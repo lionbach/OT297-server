@@ -11,4 +11,7 @@ public class OrganizationBasicResponse {
     private String image;
     private String address;
     private String phone;
+    private String urlFacebook;
+    private String urlInstagram;
+    private String urlLinkedin;
 }

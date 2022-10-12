@@ -37,6 +37,11 @@ public class UserSeeder implements CommandLineRunner {
     @Autowired
     CommentRepository commentRepository;
 
+    @Autowired
+    ContactRepository contactRepository;
+    @Autowired
+    ActivityRepository activityRepository;
+
     private static final System.Logger LOGGER = System.getLogger("Mi log");
 
     @Override
@@ -46,10 +51,14 @@ public class UserSeeder implements CommandLineRunner {
         this.loadSeedersOrganization();
         this.loadSeedersCategories();
         this.loadSeedersNews();
+        this.loadSeedersContacts();
+        this.loadSeedersActivities();
         this.loadSeedersSlides();
         this.loadSeedersTestimonials();
         this.loadSeedersComments();
     }
+
+
 
     private void loadSeedersUsers() {
         if (roleRepository.findAll().isEmpty() && userRepository.findAll().isEmpty()) {
@@ -87,9 +96,11 @@ public class UserSeeder implements CommandLineRunner {
     }
 
     private void loadSeedersOrganization() {
+
         if (organizationRepository.findAll().isEmpty()) {
-            organizationRepository.save(new OrganizationEntity("ONG Somos Mas", "/img/logo.jpg", "street A 123", "01187654321", "somos_mas@gmail.com", "Welcome Text", "About Us Text"));
-            organizationRepository.save(new OrganizationEntity("ONG Por Los Pibes", "/img/logo2.jpg", "P. Sherman Calle Wallaby 42, Sidney", "01165598001", "por_los_pibes@gmail.com", "Welcome Text 2", "About Us Text 2"));
+            organizationRepository.save(new OrganizationEntity("ONG Somos Mas", "/img/logo.jpg", "street A 123", "01187654321", "somos_mas@gmail.com", "Welcome Text", "About Us Text", "facebook link", "instagram link", "Linkedin link"));
+            organizationRepository.save(new OrganizationEntity("ONG Por Los Pibes", "/img/logo2.jpg", "P. Sherman Calle Wallaby 42, Sidney", "01165598001", "por_los_pibes@gmail.com", "Welcome Text 2", "About Us Text 2", "facebook link", "instagram link", "Linkedin link"));
+
         }
     }
 
@@ -106,6 +117,28 @@ public class UserSeeder implements CommandLineRunner {
             newsRepository.save(new NewEntity("Dog A", "Description One", "/img/juan.jpg", 1L));
             newsRepository.save(new NewEntity("Dog B", "Description Two", "/img/guille.jpg", 2L));
             newsRepository.save(new NewEntity("Dog C", "Description three", "/img/leo.jpg", 3L));
+        }
+    }
+
+    private void loadSeedersContacts() {
+        if (contactRepository.findAll().isEmpty()){
+            contactRepository.save(new ContactEntity("guillermo", "11456789", "guillermo@gmail.com", "primer"));
+            contactRepository.save(new ContactEntity("silvia", "11456784", "silvia@gmail.com", "segundo"));
+            contactRepository.save(new ContactEntity("Ivonne", "11456724", "ivonne@gmail.com", "tercero"));
+            contactRepository.save(new ContactEntity("Pepe", "11454689", "pepe@gmail.com", "cuarto"));
+
+        }
+    }
+    private void loadSeedersActivities() {
+        if (activityRepository.findAll().isEmpty()){
+            activityRepository.save(new ActivityEntity("Futbol","Content 1","/img/leo.jpg"));
+            activityRepository.save(new ActivityEntity("Tennis","Content 2","/img/leo.jpg"));
+            activityRepository.save(new ActivityEntity("Natacion","Content 3","/img/leo.jpg"));
+            activityRepository.save(new ActivityEntity("Basket","Content 4","/img/leo.jpg"));
+            activityRepository.save(new ActivityEntity("Waterpolo","Content 5","/img/leo.jpg"));
+            activityRepository.save(new ActivityEntity("Pato","Content 6","/img/leo.jpg"));
+            activityRepository.save(new ActivityEntity("Golf","Content 7","/img/leo.jpg"));
+
         }
     }
 
