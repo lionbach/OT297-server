@@ -14,4 +14,6 @@ public interface CommentService {
     CommentResponse save(CommentRequest commentRequest) throws IOException;
 
     ResponseEntity<CommentResponse> update(Long id, CommentRequest request, String auth);
+
+    ResponseEntity<CommentResponse> delete(Long id, String auth);
 }

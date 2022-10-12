@@ -2,6 +2,7 @@ package com.alkemy.ong.service.impl;
 
 import com.alkemy.ong.auth.service.AuthService;
 import com.alkemy.ong.models.entity.CommentEntity;
+import com.alkemy.ong.models.entity.UserEntity;
 import com.alkemy.ong.models.mapper.CommentMapper;
 import com.alkemy.ong.models.request.CommentRequest;
 import com.alkemy.ong.models.response.CommentBasicResponse;
@@ -51,6 +52,24 @@ public class CommentServiceImpl implements CommentService {
             if (authService.roleValidator(userId, auth) && userId == entity.get().getUserId()) {
                 entity.get().setBody(request.getBody());
                 response = ResponseEntity.status(HttpStatus.OK).body(commentMapper.commentEntity2CommentResponse(commentRepository.save(entity.get())));
+            } else {
+                response = ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+            }
+        } else {
+            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return response;
+    }
+
+    @Override
+    public ResponseEntity<CommentResponse> delete(Long id, String auth) {
+        ResponseEntity<CommentResponse> response;
+        Optional<CommentEntity> commentEntity = commentRepository.findById(id);
+        if (!commentEntity.isEmpty()) {
+            Long userId = commentEntity.get().getUserId();
+            if (authService.roleValidator(userId, auth)) {
+                commentRepository.delete(commentEntity.get());
+                response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
             } else {
                 response = ResponseEntity.status(HttpStatus.FORBIDDEN).build();
             }

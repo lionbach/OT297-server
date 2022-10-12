@@ -34,7 +34,12 @@ public class CommentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CommentResponse> update(@Valid @PathVariable Long id, @RequestBody CommentRequest commentRequest,  HttpServletRequest request) throws IOException{
+    public ResponseEntity<CommentResponse> update(@Valid @PathVariable Long id, @RequestBody CommentRequest commentRequest, HttpServletRequest request) throws IOException {
         return commentService.update(id, commentRequest, request.getHeader("Authorization"));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<CommentResponse> delete(@Valid @PathVariable Long id, HttpServletRequest request) throws IOException {
+        return commentService.delete(id, request.getHeader("Authorization"));
     }
 }
