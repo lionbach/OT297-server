@@ -2,7 +2,6 @@ package com.alkemy.ong.service.impl;
 
 import com.alkemy.ong.auth.service.AuthService;
 import com.alkemy.ong.models.entity.CommentEntity;
-import com.alkemy.ong.models.entity.UserEntity;
 import com.alkemy.ong.models.mapper.CommentMapper;
 import com.alkemy.ong.models.request.CommentRequest;
 import com.alkemy.ong.models.response.CommentBasicResponse;
@@ -31,7 +30,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentBasicResponse> listCommentsSortByTimestamps() {
         List<CommentEntity> entities = commentRepository.findAll(Sort.by(Sort.Direction.DESC, "timestamps"));
-        List<CommentBasicResponse> responses = commentMapper.commentEntitiesList2CommentBasicResponse(entities);
+        List<CommentBasicResponse> responses = commentMapper.commentEntitiesList2CommentBasicResponseList(entities);
         return responses;
     }
 

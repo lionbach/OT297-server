@@ -3,6 +3,8 @@ package com.alkemy.ong.controller;
 
 import com.alkemy.ong.models.request.NewsRequest;
 import com.alkemy.ong.models.request.NewsUpdateRequest;
+import com.alkemy.ong.models.response.CommentBasicResponse;
+import com.alkemy.ong.models.response.CommentResponse;
 import com.alkemy.ong.models.response.NewsResponse;
 import com.alkemy.ong.models.response.NewsUpdateResponse;
 import com.alkemy.ong.service.NewsService;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/news")
@@ -41,5 +44,10 @@ public class NewsController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id, @RequestHeader(name = "Authorization") String token){
         return newsService.delete(id, token);
+    }
+
+    @GetMapping("/{id}/comments")
+    public ResponseEntity<List<CommentResponse>> getAllComments(@PathVariable Long id){
+        return newsService.getAllCommentsById(id);
     }
 }

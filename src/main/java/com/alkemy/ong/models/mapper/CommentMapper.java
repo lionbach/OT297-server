@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 public class CommentMapper {
-    public List<CommentBasicResponse> commentEntitiesList2CommentBasicResponse(List<CommentEntity> entities) {
+    public List<CommentBasicResponse> commentEntitiesList2CommentBasicResponseList(List<CommentEntity> entities) {
         List<CommentBasicResponse> responses = new ArrayList<>();
         for (CommentEntity entity : entities) {
             responses.add(commentEntity2CommentBasicResponse(entity));
@@ -41,5 +41,13 @@ public class CommentMapper {
         response.setBody(entity.getBody());
         response.setTimestamps(entity.getTimestamps());
         return response;
+    }
+
+    public List<CommentResponse> commentEntitiesList2CommentResponseList(List<CommentEntity> entities) {
+        List<CommentResponse> responses = new ArrayList<>();
+        for (CommentEntity entity : entities) {
+            responses.add(commentEntity2CommentResponse(entity));
+        }
+        return responses;
     }
 }
