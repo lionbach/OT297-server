@@ -31,7 +31,7 @@ public class SlideServiceImpl implements SlideService {
         SlideEntity entity = slideMapper.slideRequest2SlideEntity(slide);
         //verify order
         if (entity.getSlideOrder() == null || entity.getSlideOrder() == 0) {
-            List<SlideEntity> listEntitys = slideRepository.findAll(Sort.by(Sort.Direction.DESC, "sliceOrder"));
+            List<SlideEntity> listEntitys = slideRepository.findAll(Sort.by(Sort.Direction.DESC, "slideOrder"));
             entity.setSlideOrder(listEntitys.get(0).getSlideOrder() + 1);
         }
         SlideEntity savedEntity = slideRepository.save(entity);
