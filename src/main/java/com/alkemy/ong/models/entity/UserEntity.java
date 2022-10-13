@@ -6,6 +6,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Set;
 
@@ -18,8 +19,8 @@ import java.util.Set;
 @Table(name = "user")
 @SQLDelete(sql = "UPDATE user SET soft_delete = true where id=?")
 @Where(clause = "soft_delete=false")
+@Embeddable
 public class UserEntity {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
