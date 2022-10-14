@@ -10,7 +10,6 @@ import com.alkemy.ong.repository.MemberRepository;
 import com.alkemy.ong.service.MemberService;
 import com.alkemy.ong.utils.PaginationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -45,8 +44,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberPaginatedResponse findAllPaginated(Integer numberOfPage) {
-        PaginationUtils pagination = new PaginationUtils(memberRepository, numberOfPage, 3, "/members/paginated?page=%d");
+    public MemberPaginatedResponse findAllPaginated(Integer numberOfPage, Integer quantityOfResults) {
+        PaginationUtils pagination = new PaginationUtils(memberRepository, numberOfPage, quantityOfResults, "/members/paginated?page=%d");
         MemberPaginatedResponse memberPaginatedResponse = memberMapper.paginationUtils2MemberPaginationResponse(pagination);
         return memberPaginatedResponse;
     }

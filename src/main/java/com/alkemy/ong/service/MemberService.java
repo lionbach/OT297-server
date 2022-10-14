@@ -11,5 +11,5 @@ public interface MemberService {
     void delete(Long id);
     List<MemberResponse> findAll();
     MemberResponse update(MemberRequest memberRequest, Long id);
-    MemberPaginatedResponse findAllPaginated(Integer numberOfPage);
+    MemberPaginatedResponse findAllPaginated(Integer numberOfPage, Integer quantityOfResults);
 }
