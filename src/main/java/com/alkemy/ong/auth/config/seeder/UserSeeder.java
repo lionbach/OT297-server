@@ -59,7 +59,6 @@ public class UserSeeder implements CommandLineRunner {
     }
 
 
-
     private void loadSeedersUsers() {
         if (roleRepository.findAll().isEmpty() && userRepository.findAll().isEmpty()) {
 
@@ -121,7 +120,7 @@ public class UserSeeder implements CommandLineRunner {
     }
 
     private void loadSeedersContacts() {
-        if (contactRepository.findAll().isEmpty()){
+        if (contactRepository.findAll().isEmpty()) {
             contactRepository.save(new ContactEntity("guillermo", "11456789", "guillermo@gmail.com", "primer"));
             contactRepository.save(new ContactEntity("silvia", "11456784", "silvia@gmail.com", "segundo"));
             contactRepository.save(new ContactEntity("Ivonne", "11456724", "ivonne@gmail.com", "tercero"));
@@ -129,23 +128,29 @@ public class UserSeeder implements CommandLineRunner {
 
         }
     }
+
     private void loadSeedersActivities() {
-        if (activityRepository.findAll().isEmpty()){
-            activityRepository.save(new ActivityEntity("Futbol","Content 1","/img/leo.jpg"));
-            activityRepository.save(new ActivityEntity("Tennis","Content 2","/img/leo.jpg"));
-            activityRepository.save(new ActivityEntity("Natacion","Content 3","/img/leo.jpg"));
-            activityRepository.save(new ActivityEntity("Basket","Content 4","/img/leo.jpg"));
-            activityRepository.save(new ActivityEntity("Waterpolo","Content 5","/img/leo.jpg"));
-            activityRepository.save(new ActivityEntity("Pato","Content 6","/img/leo.jpg"));
-            activityRepository.save(new ActivityEntity("Golf","Content 7","/img/leo.jpg"));
+        if (activityRepository.findAll().isEmpty()) {
+            activityRepository.save(new ActivityEntity("Futbol", "Content 1", "/img/leo.jpg"));
+            activityRepository.save(new ActivityEntity("Tennis", "Content 2", "/img/leo.jpg"));
+            activityRepository.save(new ActivityEntity("Natacion", "Content 3", "/img/leo.jpg"));
+            activityRepository.save(new ActivityEntity("Basket", "Content 4", "/img/leo.jpg"));
+            activityRepository.save(new ActivityEntity("Waterpolo", "Content 5", "/img/leo.jpg"));
+            activityRepository.save(new ActivityEntity("Pato", "Content 6", "/img/leo.jpg"));
+            activityRepository.save(new ActivityEntity("Golf", "Content 7", "/img/leo.jpg"));
 
         }
     }
 
     private void loadSeedersTestimonials() {
         if (testimonialRepository.findAll().isEmpty()) {
-            testimonialRepository.save(new TestimonialEntity("Mejoras", "imagen.jpg", "Hemos mejorado nuestra página!"));
-            testimonialRepository.save(new TestimonialEntity("Inclusivos", "imagen2.jpg", "Ahora hay lugar para todos!"));
+            int i = 1;
+            while (i <= 30) {
+                testimonialRepository.save(new TestimonialEntity("ejemplo", "imagen.jpg", "ejemplo"));
+                i++;
+            }
+//            testimonialRepository.save(new TestimonialEntity("Mejoras", "imagen.jpg", "Hemos mejorado nuestra página!"));
+//            testimonialRepository.save(new TestimonialEntity("Inclusivos", "imagen2.jpg", "Ahora hay lugar para todos!"));
         }
     }
 
@@ -163,5 +168,9 @@ public class UserSeeder implements CommandLineRunner {
             commentRepository.save(new CommentEntity(2L, 2L, "Unos capos!"));
             commentRepository.save(new CommentEntity(2L, 2L, "Grosos!"));
         }
+    }
+
+    private static String concat(String s1, String s2) {
+        return s1 + " " + s2;
     }
 }

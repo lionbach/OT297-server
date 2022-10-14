@@ -105,6 +105,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/testimonials").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
                 .antMatchers(HttpMethod.PUT, "/testimonials/{id}").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
                 .antMatchers(HttpMethod.DELETE, "/testimonials/{id}").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
+                .antMatchers(HttpMethod.GET, "/testimonials/get-all").hasRole(RoleEnum.USER.getSimpleRoleName())
 
                 //comments
                 .antMatchers(HttpMethod.GET, "/comments").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
