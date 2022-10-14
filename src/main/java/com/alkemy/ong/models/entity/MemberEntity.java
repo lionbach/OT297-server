@@ -1,6 +1,8 @@
 package com.alkemy.ong.models.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
@@ -10,6 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
+@NoArgsConstructor
 @Entity
 @Table(name = "members")
 @Setter
@@ -44,4 +47,9 @@ public class MemberEntity {
     @Column(name = "timestamps", nullable = false)
     @CreationTimestamp
     private Timestamp timestamps;
+
+    public MemberEntity(String name, String image) {
+        this.name = name;
+        this.image = image;
+    }
 }
