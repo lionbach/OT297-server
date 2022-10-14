@@ -8,7 +8,7 @@ import com.alkemy.ong.models.response.TestimonialPageResponse;
 import com.alkemy.ong.models.response.TestimonialResponse;
 import com.alkemy.ong.repository.TestimonialRepository;
 import com.alkemy.ong.service.TestimonialService;
-import com.alkemy.ong.utils.ClassUtil;
+import com.alkemy.ong.utils.PaginationUtils;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import static com.alkemy.ong.utils.ApiConstants.PATH_TESTIMONIALS;
 
 @Service
-public class TestimonialServiceImpl extends ClassUtil<TestimonialEntity, Long, TestimonialRepository> implements TestimonialService {
+public class TestimonialServiceImpl implements TestimonialService {
     @Autowired
     TestimonialMapper testimonialMapper;
     @Autowired
@@ -57,9 +57,10 @@ public class TestimonialServiceImpl extends ClassUtil<TestimonialEntity, Long, T
         if (pageNumber < 1) {
             throw new NotFoundException("Invalid resource");
         }
-        Page<TestimonialEntity> page = getPage(pageNumber);
-        String previous = getPrevious(PATH_TESTIMONIALS, pageNumber);
-        String next = getNext(page, PATH_TESTIMONIALS, pageNumber);
+        PaginationUtils pageUtils = new PaginationUtils(testimonialRepository, pageNumber, 10, PATH_TESTIMONIALS);
+        Page page = pageUtils.getPage();
+        String previous = pageUtils.getPrevious();
+        String next = pageUtils.getNext();
         return testimonialMapper.testimonialEntityList2TestimonialPageResponse(page.getContent(), next, previous);
     }
 }

@@ -15,7 +15,7 @@ public class PaginationUtils {
     public PaginationUtils(JpaRepository repository, Integer numberOfPage, Integer quantityOfResults, String path) {
         this.numberOfPage = numberOfPage;
         this.path = path;
-        Pageable  pageable = PageRequest.of(numberOfPage - 1, quantityOfResults );
+        Pageable pageable = PageRequest.of(numberOfPage - 1, quantityOfResults);
         this.pageObject = repository.findAll(pageable);
     }
 
@@ -24,17 +24,16 @@ public class PaginationUtils {
     }
 
     public String getPrevious() {
-        if(pageObject.hasPrevious()){
-            return String.format(path, numberOfPage-1);
+        if (pageObject.hasPrevious()) {
+            return String.format(path, numberOfPage - 1);
         }
         return null;
     }
 
     public String getNext() {
-        if(pageObject.hasNext()){
-            return String.format(path, numberOfPage+1);
+        if (pageObject.hasNext()) {
+            return String.format(path, numberOfPage + 1);
         }
         return null;
     }
-
 }
