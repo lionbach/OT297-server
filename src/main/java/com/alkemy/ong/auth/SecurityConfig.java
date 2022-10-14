@@ -112,10 +112,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/comments/{id}").hasAnyRole(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
                 .antMatchers(HttpMethod.DELETE, "/comments/{id}").hasAnyRole(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
 
-                //categories
+                //members
                 .antMatchers(HttpMethod.POST, "/members").hasAnyRole(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
                 .antMatchers(HttpMethod.PUT, "/members/{id}").hasAnyRole(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
                 .antMatchers(HttpMethod.GET, "/members").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
+                .antMatchers(HttpMethod.GET, "/members/paginated").hasAnyRole(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
                 .antMatchers(HttpMethod.DELETE, "/members/{id}").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
 
                 /*agregar autorizaciones a los endpoints pendientes en desarrollo
