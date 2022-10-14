@@ -44,6 +44,8 @@ public class UserSeeder implements CommandLineRunner {
     ContactRepository contactRepository;
     @Autowired
     ActivityRepository activityRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     private static final System.Logger LOGGER = System.getLogger("Mi log");
 
@@ -59,9 +61,8 @@ public class UserSeeder implements CommandLineRunner {
         this.loadSeedersSlides();
         this.loadSeedersTestimonials();
         this.loadSeedersComments();
+        this.loadSeedersMembers();
     }
-
-
 
     private void loadSeedersUsers() {
         if (roleRepository.findAll().isEmpty() && userRepository.findAll().isEmpty()) {
@@ -165,6 +166,14 @@ public class UserSeeder implements CommandLineRunner {
             commentRepository.save(new CommentEntity(1L, 1L, "Muy buena la ONG!"));
             commentRepository.save(new CommentEntity(2L, 2L, "Unos capos!"));
             commentRepository.save(new CommentEntity(2L, 2L, "Grosos!"));
+        }
+    }
+
+    private void loadSeedersMembers() {
+        if (memberRepository.findAll().isEmpty()) {
+            for(int i = 1; i < 15; i++){
+                memberRepository.save(new MemberEntity("name_"+i , "img_"+i));
+            }
         }
     }
 }
