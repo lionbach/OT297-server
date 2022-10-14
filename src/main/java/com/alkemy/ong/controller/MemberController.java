@@ -2,6 +2,7 @@ package com.alkemy.ong.controller;
 
 import com.alkemy.ong.models.request.MemberRequest;
 
+import com.alkemy.ong.models.response.MemberPaginatedResponse;
 import com.alkemy.ong.models.response.MemberResponse;
 import com.alkemy.ong.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,12 @@ public class MemberController {
     public ResponseEntity<List<MemberResponse>> findAll(){
         List<MemberResponse> membersResponse  = memberService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(membersResponse);
+    }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<MemberPaginatedResponse> findAllPaginated(@RequestParam(defaultValue = "1") Integer page){
+        MemberPaginatedResponse response  = memberService.findAllPaginated(page, 10);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PutMapping("/{id}")

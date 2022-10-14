@@ -41,6 +41,8 @@ public class UserSeeder implements CommandLineRunner {
     ContactRepository contactRepository;
     @Autowired
     ActivityRepository activityRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     private static final System.Logger LOGGER = System.getLogger("Mi log");
 
@@ -56,8 +58,8 @@ public class UserSeeder implements CommandLineRunner {
         this.loadSeedersSlides();
         this.loadSeedersTestimonials();
         this.loadSeedersComments();
+        this.loadSeedersMembers();
     }
-
 
     private void loadSeedersUsers() {
         if (roleRepository.findAll().isEmpty() && userRepository.findAll().isEmpty()) {
@@ -170,7 +172,11 @@ public class UserSeeder implements CommandLineRunner {
         }
     }
 
-    private static String concat(String s1, String s2) {
-        return s1 + " " + s2;
+    private void loadSeedersMembers() {
+        if (memberRepository.findAll().isEmpty()) {
+            for(int i = 1; i < 15; i++){
+                memberRepository.save(new MemberEntity("name_"+i , "img_"+i));
+            }
+        }
     }
 }
