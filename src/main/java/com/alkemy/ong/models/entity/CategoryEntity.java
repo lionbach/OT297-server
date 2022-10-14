@@ -1,6 +1,7 @@
 package com.alkemy.ong.models.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import java.sql.Timestamp;
 @Table(name = "categories")
 @Getter
 @Setter
+@Builder
 @SQLDelete(sql = "UPDATE categories SET deleted = true where id=?")
 @Where(clause = "deleted=false")
 public class CategoryEntity {

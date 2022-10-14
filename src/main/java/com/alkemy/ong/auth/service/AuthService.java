@@ -6,6 +6,8 @@ import com.alkemy.ong.models.response.UserLoginResponse;
 import com.alkemy.ong.models.response.UserRegisterResponse;
 import com.alkemy.ong.models.response.UserResponse;
 
+import java.io.IOException;
+
 public interface AuthService {
     public UserRegisterResponse register(UserRegisterRequest user);
 
@@ -16,4 +18,6 @@ public interface AuthService {
     public UserEntity getUserEntityByToken(String token);
 
     public boolean roleValidator(Long id, String token);
+
+    void registerAdmin(UserRegisterRequest userRequest) throws IOException;
 }

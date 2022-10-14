@@ -16,15 +16,14 @@ public class EmailServiceImpl implements EmailService {
 
     @Autowired
     private Environment env;
-    @Value("${ORGANIZATION_ID}")
-    private String emailSender;
-    @Value("${SENDGRID_API_KEY}")
-    private String apiKey;
-    @Value("${TEMPLATE_ID}")
+    @Value("${alkemy.ong.email.templateid}")
     private String templateRegisterId;
-    @Value("${TEMPLATE_ID_CONTACT}")
+    @Value("${alkemy.ong.email.sender}")
+    private String organizationId;
+    @Value("${alkemy.ong.email.apikey}")
+    private String sendGridKey;
+    @Value("${alkemy.ong.email.templateidcontact}")
     private String templateContactId;
-    @Value("${alkemy.ong.email.enabled}")
     private boolean enabledMailService;
 
 
@@ -44,13 +43,13 @@ public class EmailServiceImpl implements EmailService {
     }
 
     private void setEmail(String emailTo, String templateId){
-        Email fromEmail = new Email(emailSender);
+        Email fromEmail = new Email(organizationId);
         Email toEmail = new Email(emailTo);
         Content content = new Content("text/html", "xxx");
         String subject = "xxx";
         Mail mail = new Mail(fromEmail, subject, toEmail, content);
         mail.setTemplateId(templateId);
-        SendGrid sg = new SendGrid(apiKey);
+        SendGrid sg = new SendGrid(sendGridKey);
         Request request = new Request();
         sendEmail(mail, sg, request);
     }
