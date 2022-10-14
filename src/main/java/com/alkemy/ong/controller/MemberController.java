@@ -39,7 +39,7 @@ public class MemberController {
 
     @GetMapping("/paginated")
     public ResponseEntity<MemberPaginatedResponse> findAllPaginated(@RequestParam(defaultValue = "1") Integer page){
-        MemberPaginatedResponse response  = memberService.findAllPaginated(page, 2);
+        MemberPaginatedResponse response  = memberService.findAllPaginated(page, 10);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
