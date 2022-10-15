@@ -3,14 +3,17 @@ package com.alkemy.ong.models.mapper;
 import com.alkemy.ong.models.entity.CategoryEntity;
 import com.alkemy.ong.models.entity.NewEntity;
 import com.alkemy.ong.models.request.NewsRequest;
-import com.alkemy.ong.models.response.NewsResponse;
-import com.alkemy.ong.models.response.NewsUpdateResponse;
+import com.alkemy.ong.models.response.*;
 import com.alkemy.ong.repository.CategoryRepository;
 import com.alkemy.ong.service.AwsService;
+import com.alkemy.ong.utils.PaginationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -50,6 +53,27 @@ public class NewsMapper {
         response.setCategoryId(savedEntity.getCategoryId());
         response.setTimestamps(savedEntity.getTimestamp());
         return response;
+    }
+
+    public NewsPaginatedResponse paginationUtils2NewsPaginationResponse(PaginationUtils pagination) throws IOException {
+        Page page = pagination.getPage();
+        List<NewEntity> newsEntityList =  page.getContent();
+        List<NewsResponse> newsResponseList = newsEntityList2NewsResponseList(newsEntityList);
+
+        NewsPaginatedResponse newsPaginatedResponse = new NewsPaginatedResponse();
+        newsPaginatedResponse.setNewsPageContent(newsResponseList);
+        newsPaginatedResponse.setPreviousPage(pagination.getPrevious());
+        newsPaginatedResponse.setNextPage(pagination.getNext());
+        return newsPaginatedResponse;
+    }
+
+    public List<NewsResponse> newsEntityList2NewsResponseList(List<NewEntity> newsEntityList) throws IOException {
+        List<NewsResponse> mapperResponse = new ArrayList<>();
+        for (NewEntity ent: newsEntityList) {
+            NewsResponse res = newEntity2NewsResponse(ent);
+            mapperResponse.add(res);
+        }
+        return mapperResponse;
     }
 /*
     public NewsUpdateResponse newsEntity2NewsUpdateResponse(NewEntity newsEntity) {

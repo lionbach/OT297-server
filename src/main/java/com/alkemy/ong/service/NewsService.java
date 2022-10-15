@@ -3,6 +3,7 @@ package com.alkemy.ong.service;
 import com.alkemy.ong.models.request.NewsRequest;
 import com.alkemy.ong.models.request.NewsUpdateRequest;
 import com.alkemy.ong.models.response.CommentResponse;
+import com.alkemy.ong.models.response.NewsPaginatedResponse;
 import com.alkemy.ong.models.response.NewsResponse;
 import com.alkemy.ong.models.response.NewsUpdateResponse;
 import org.springframework.http.ResponseEntity;
@@ -22,4 +23,6 @@ public interface NewsService {
     ResponseEntity<Void> delete(Long id, String token);
 
     ResponseEntity<List<CommentResponse>> getAllCommentsById(Long id);
+
+    NewsPaginatedResponse findAllPaginated(Integer numberOfPage, Integer quantityOfResults) throws IOException;
 }

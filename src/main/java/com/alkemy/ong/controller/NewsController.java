@@ -3,10 +3,7 @@ package com.alkemy.ong.controller;
 
 import com.alkemy.ong.models.request.NewsRequest;
 import com.alkemy.ong.models.request.NewsUpdateRequest;
-import com.alkemy.ong.models.response.CommentBasicResponse;
-import com.alkemy.ong.models.response.CommentResponse;
-import com.alkemy.ong.models.response.NewsResponse;
-import com.alkemy.ong.models.response.NewsUpdateResponse;
+import com.alkemy.ong.models.response.*;
 import com.alkemy.ong.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,5 +46,11 @@ public class NewsController {
     @GetMapping("/{id}/comments")
     public ResponseEntity<List<CommentResponse>> getAllComments(@PathVariable Long id){
         return newsService.getAllCommentsById(id);
+    }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<NewsPaginatedResponse> findAllPaginated(@RequestParam(defaultValue = "1") Integer page) throws IOException {
+        NewsPaginatedResponse response  = newsService.findAllPaginated(page, 10);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
