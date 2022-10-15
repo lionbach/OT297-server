@@ -5,9 +5,12 @@ import com.alkemy.ong.models.entity.CategoryEntity;
 import com.alkemy.ong.models.mapper.CategoryMapper;
 import com.alkemy.ong.models.request.CategoryRequest;
 import com.alkemy.ong.models.response.CategoryOnlyNameResponse;
+import com.alkemy.ong.models.response.CategoryPaginatedResponse;
 import com.alkemy.ong.models.response.CategoryResponse;
+import com.alkemy.ong.models.response.MemberPaginatedResponse;
 import com.alkemy.ong.repository.CategoryRepository;
 import com.alkemy.ong.service.CategoryService;
+import com.alkemy.ong.utils.PaginationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -40,6 +43,12 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryResponse;
     }
 
+    @Override
+    public CategoryPaginatedResponse findAllPaginated(Integer numberOfPage, Integer quantityOfResults) {
+        PaginationUtils pagination = new PaginationUtils(categoryRepository, numberOfPage, quantityOfResults, "/category/paginated?page=%d");
+        CategoryPaginatedResponse categoryPaginatedResponse = categoryMapper.paginationUtils2CategoryPaginationResponse(pagination);
+        return categoryPaginatedResponse;
+    }
     @Override
     public List<CategoryOnlyNameResponse> listCategories() {
         List<CategoryEntity> categoryEntity =  categoryRepository.findAll();

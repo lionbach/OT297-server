@@ -1,15 +1,16 @@
 package com.alkemy.ong.models.mapper;
 
 import com.alkemy.ong.models.entity.CategoryEntity;
+import com.alkemy.ong.models.entity.MemberEntity;
 import com.alkemy.ong.models.request.CategoryRequest;
-import com.alkemy.ong.models.response.CategoryOnlyNameResponse;
-import com.alkemy.ong.models.response.CategoryResponse;
+import com.alkemy.ong.models.response.*;
 import com.alkemy.ong.repository.CategoryRepository;
 import com.alkemy.ong.service.AwsService;
+import com.alkemy.ong.utils.PaginationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,5 +54,27 @@ public class CategoryMapper {
             listResponse.add(res);
         }
         return listResponse;
+    }
+
+    public CategoryPaginatedResponse paginationUtils2CategoryPaginationResponse(PaginationUtils pagination) {
+
+        Page page = pagination.getPage();
+        List<CategoryEntity> categoryEntityList =  page.getContent();
+        List<CategoryResponse> categoryResponseList = categoryEntityList2CategoryResponseList(categoryEntityList);
+
+        CategoryPaginatedResponse categoryPaginatedResponse = new CategoryPaginatedResponse();
+        categoryPaginatedResponse.setCategoryPageContent(categoryResponseList);
+        categoryPaginatedResponse.setPreviousPage(pagination.getPrevious());
+        categoryPaginatedResponse.setNextPage(pagination.getNext());
+        return categoryPaginatedResponse;
+    }
+
+    public List<CategoryResponse> categoryEntityList2CategoryResponseList(List<CategoryEntity> categoryEntityList) {
+        List<CategoryResponse> mapperResponse = new ArrayList<>();
+        for (CategoryEntity ent: categoryEntityList) {
+            CategoryResponse res = categoryEntity2CategoryResponse(ent);
+            mapperResponse.add(res);
+        }
+        return mapperResponse;
     }
 }
