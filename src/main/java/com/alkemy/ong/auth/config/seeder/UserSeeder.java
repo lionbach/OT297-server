@@ -5,6 +5,7 @@ import com.alkemy.ong.repository.*;
 import com.alkemy.ong.utils.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,9 @@ import java.util.Set;
 
 
 // me avisa que el UserSeeder nunca es usado
+
 @Component
+//@Profile("dev")
 public class UserSeeder implements CommandLineRunner {
 
 

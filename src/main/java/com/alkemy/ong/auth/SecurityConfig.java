@@ -27,6 +27,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private CustomUserDetailsService customUserDetailsService;
 
 
+    private static final String[] publicEndpoint = {
+            "/swagger-resources/**",
+            "/swagger-ui/**", "/v2/api-docs",
+            "/v3/api-docs",
+            "/api/docs",
+            "/api/docs/**",
+            "/api/docs/swagger-ui",
+            "/swagger-ui.html",
+            "/**/swagger-ui/**",
+            "/swagger-ui"
+    };
+
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
         return new JwtAuthenticationFilter();
@@ -120,6 +132,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/members/paginated").hasAnyRole(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
                 .antMatchers(HttpMethod.DELETE, "/members/{id}").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
 
+                //Swagger
+                .antMatchers("/swagger-ui/**","/swagger-resources/**","/v2/api-docs").permitAll()
+                .antMatchers(publicEndpoint).permitAll()
+                .anyRequest().authenticated()
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+
+
                 /*agregar autorizaciones a los endpoints pendientes en desarrollo
 
                  *EJEMPLO:
@@ -132,8 +152,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                  * PARA USER Y ADMIN:
                  * .antMatchers(HttpMethod.<TIPO>, ">endpoint>").hasAnyRole(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
                  */
-                .anyRequest()
-                .authenticated();
+
+
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

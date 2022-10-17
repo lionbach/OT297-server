@@ -1,8 +1,6 @@
 package com.alkemy.ong.models.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -16,6 +14,8 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "user")
 @SQLDelete(sql = "UPDATE user SET soft_delete = true where id=?")
 @Where(clause = "soft_delete=false")

@@ -1,5 +1,6 @@
 package com.alkemy.ong.models.request;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @Getter
 @Setter
+@Builder
 public class UserLoginRequest {
     @NotNull(message = "cannot be null")
     @NotEmpty(message = "cannot be empty")
