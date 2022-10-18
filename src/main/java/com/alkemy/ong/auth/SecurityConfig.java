@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/api/docs/swagger-ui",
             "/swagger-ui.html",
             "/**/swagger-ui/**",
-            "/swagger-ui"
+            "/swagger-ui",
     };
 
     @Bean
@@ -117,6 +117,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/testimonials").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
                 .antMatchers(HttpMethod.PUT, "/testimonials/{id}").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
                 .antMatchers(HttpMethod.DELETE, "/testimonials/{id}").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
+                .antMatchers(HttpMethod.GET, "/testimonials/get-all").hasRole(RoleEnum.USER.getSimpleRoleName())
 
                 //comments
                 .antMatchers(HttpMethod.GET, "/comments").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
@@ -132,25 +133,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, "/members/{id}").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
 
                 //Swagger
-                .antMatchers("/swagger-ui/**","/swagger-resources/**","/v2/api-docs").permitAll()
+                .antMatchers("/swagger-ui/**", "/swagger-resources/**", "/v2/api-docs").permitAll()
                 .antMatchers(publicEndpoint).permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 
 
-                /*agregar autorizaciones a los endpoints pendientes en desarrollo
+        /*agregar autorizaciones a los endpoints pendientes en desarrollo
 
-                 *EJEMPLO:
-                 * PARA TODOS:
-                 * .antMatchers(HttpMethod.<TIPO>, "<endpoint>").permitAll()
-                 * PARA USER:
-                 * .antMatchers(HttpMethod.<TIPO>, "<endpoint>").hasRole(RoleEnum.USER.getSimpleRoleName);
-                 * PARA ADMIN:
-                 * .antMatchers(HttpMethod.<TIPO>, "<endpoint>").hasRole(RoleEnum.ADMIN.getSimpleRoleName);
-                 * PARA USER Y ADMIN:
-                 * .antMatchers(HttpMethod.<TIPO>, ">endpoint>").hasAnyRole(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
-                 */
+         *EJEMPLO:
+         * PARA TODOS:
+         * .antMatchers(HttpMethod.<TIPO>, "<endpoint>").permitAll()
+         * PARA USER:
+         * .antMatchers(HttpMethod.<TIPO>, "<endpoint>").hasRole(RoleEnum.USER.getSimpleRoleName);
+         * PARA ADMIN:
+         * .antMatchers(HttpMethod.<TIPO>, "<endpoint>").hasRole(RoleEnum.ADMIN.getSimpleRoleName);
+         * PARA USER Y ADMIN:
+         * .antMatchers(HttpMethod.<TIPO>, ">endpoint>").hasAnyRole(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
+         */
 
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

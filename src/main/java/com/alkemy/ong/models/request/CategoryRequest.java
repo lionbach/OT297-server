@@ -15,6 +15,9 @@ public class CategoryRequest {
     @NotBlank(message = "cannot be blank")
     private String name;
 
+    @NotNull(message = "cannot be null")
+    @NotEmpty(message = "cannot be empty")
+    @NotBlank(message = "cannot be blank")
     private String description;
 
     private String image;
