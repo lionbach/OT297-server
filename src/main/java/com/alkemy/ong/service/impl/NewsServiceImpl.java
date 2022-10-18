@@ -7,12 +7,15 @@ import com.alkemy.ong.models.mapper.CommentMapper;
 import com.alkemy.ong.models.mapper.NewsMapper;
 import com.alkemy.ong.models.request.NewsRequest;
 import com.alkemy.ong.models.request.NewsUpdateRequest;
+import com.alkemy.ong.models.response.CategoryPaginatedResponse;
 import com.alkemy.ong.models.response.CommentResponse;
+import com.alkemy.ong.models.response.NewsPaginatedResponse;
 import com.alkemy.ong.models.response.NewsResponse;
 import com.alkemy.ong.repository.CommentRepository;
 import com.alkemy.ong.repository.NewsRepository;
 import com.alkemy.ong.service.AwsService;
 import com.alkemy.ong.service.NewsService;
+import com.alkemy.ong.utils.PaginationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +51,12 @@ public class NewsServiceImpl implements NewsService {
         return response;
     }
 
-
+    @Override
+    public NewsPaginatedResponse findAllPaginated(Integer numberOfPage, Integer quantityOfResults) throws IOException {
+        PaginationUtils pagination = new PaginationUtils(newsRepository, numberOfPage, quantityOfResults, "/news/paginated?page=%d");
+        NewsPaginatedResponse newsPaginatedResponse = newsMapper.paginationUtils2NewsPaginationResponse(pagination);
+        return newsPaginatedResponse;
+    }
     @Override
     public ResponseEntity<NewsResponse> update(Long id, NewsUpdateRequest newsUpdateRequest, String token) throws IOException {
 

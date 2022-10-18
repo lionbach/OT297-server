@@ -2,6 +2,7 @@ package com.alkemy.ong.service;
 
 import com.alkemy.ong.models.request.CategoryRequest;
 import com.alkemy.ong.models.response.CategoryOnlyNameResponse;
+import com.alkemy.ong.models.response.CategoryPaginatedResponse;
 import com.alkemy.ong.models.response.CategoryResponse;
 
 import java.io.IOException;
@@ -13,4 +14,6 @@ public interface CategoryService {
     List<CategoryOnlyNameResponse> listCategories();
     CategoryResponse getCategory(Long id);
     void deleteCategory(Long id);
+
+    CategoryPaginatedResponse findAllPaginated(Integer numberOfPage, Integer quantityOfResults);
 }

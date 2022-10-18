@@ -1,8 +1,9 @@
 package com.alkemy.ong.controller;
 
-import com.alkemy.ong.models.entity.CategoryEntity;
+
 import com.alkemy.ong.models.request.CategoryRequest;
 import com.alkemy.ong.models.response.CategoryOnlyNameResponse;
+import com.alkemy.ong.models.response.CategoryPaginatedResponse;
 import com.alkemy.ong.models.response.CategoryResponse;
 import com.alkemy.ong.service.CategoryService;
 import io.swagger.annotations.*;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.List;
 
 @RestController
@@ -62,5 +62,11 @@ public class CategoryController {
     public ResponseEntity<Void> deleteCategory(@PathVariable @ApiParam(name = "id", type = "Long", value = "Category id", example = "1", required = true) Long id) {
         categoryService.deleteCategory(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<CategoryPaginatedResponse> findAllPaginated(@RequestParam(defaultValue = "1") Integer page){
+        CategoryPaginatedResponse response  = categoryService.findAllPaginated(page, 10);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
