@@ -13,6 +13,9 @@ public class TestimonialRequest {
     @NotBlank(message = "cannot be blank")
     private String name;
 
+    @NotNull(message = "cannot be null")
+    @NotEmpty(message = "cannot be empty")
+    @NotBlank(message = "cannot be blank")
     private String image;
 
     @NotNull(message = "cannot be null")
