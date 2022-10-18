@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
-@RequestMapping("/members")
 // swagger
 @Api(tags = "Member", description = "Member Crud")
 // swagger end
+@RestController
+@RequestMapping("/members")
 public class MemberController {
     @Autowired
     MemberService memberService;
@@ -30,7 +30,8 @@ public class MemberController {
     @ApiOperation(value = "Create Member", notes = "Allows an user to insert a member")
     @ApiResponses({
             @ApiResponse(code = 201, message = "Created"),
-            @ApiResponse(code = 500, message = "failed to try save image")
+            @ApiResponse(code = 400, message = "Bad request - cannot be null - cannot be empty - cannot be blank"),
+            @ApiResponse(code = 500, message = "Internal server error - failed to try save image")
     })
     // swagger end
     @PostMapping
@@ -44,7 +45,7 @@ public class MemberController {
     @ApiOperation(value = "Delete Member", notes = "Allows an admin to delete a member")
     @ApiResponses({
             @ApiResponse(code = 204, message = "No content"),
-            @ApiResponse(code = 404, message = "id not exist - The member to delete does not exist")
+            @ApiResponse(code = 404, message = "Not found - id not exist - The member to delete does not exist")
     })
     // swagger end
     @DeleteMapping("/{id}")
@@ -84,8 +85,10 @@ public class MemberController {
     @ApiOperation(value = "Update Member", notes = "Allows an user to update data of a member")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Ok"),
-            @ApiResponse(code = 500, message = "failed to try save image"),
-            @ApiResponse(code = 404, message = "id not exist - The member to update does not exist")
+            @ApiResponse(code = 400, message = "Bad request - cannot be null - cannot be empty - cannot be blank"),
+            @ApiResponse(code = 404, message = "Not found - id not exist - The member to update does not exist"),
+            @ApiResponse(code = 500, message = "Internal server error - failed to try save image")
+
     })
     // swagger end
     @PutMapping("/{id}")

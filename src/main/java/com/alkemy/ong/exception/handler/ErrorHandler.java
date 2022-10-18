@@ -33,11 +33,6 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
             errorDefaultMessages.add(error.getField() + ": " + error.getDefaultMessage());
         }
-        // Esto no genera nada. No se que se espera de estas lineas
-        //create 1 line for all errors
-        for (ObjectError error : ex.getBindingResult().getGlobalErrors()) {
-            errorDefaultMessages.add(error.getObjectName() + ": " + error.getDefaultMessage());
-        }
         ErrorListResponse errorListResponse = new ErrorListResponse(HttpStatus.BAD_REQUEST, errorDefaultMessages, ex.getLocalizedMessage() );
         ResponseEntity<Object> response = handleExceptionInternal(ex, errorListResponse, headers, errorListResponse.getStatus(), request);
         return response;
