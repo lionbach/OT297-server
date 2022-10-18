@@ -24,6 +24,7 @@ public class EmailServiceImpl implements EmailService {
     private String sendGridKey;
     @Value("${alkemy.ong.email.templateidcontact}")
     private String templateContactId;
+    @Value("${alkemy.ong.email.enabled}")
     private boolean enabledMailService;
 
 
