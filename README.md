@@ -16,6 +16,7 @@ Year: 2022.
 ## Users
 
 Normal users, password "12345"
+
 ```
 gisel-email@gmail.com
 ruth-email@gmail.com
@@ -30,6 +31,7 @@ daenerys-email@gmail.com
 ```
 
 Admin users, password "12345"
+
 ```
 marta-email@gmail.com
 guillermo-email@gmail.com
@@ -45,13 +47,16 @@ jon-email@gmail.com
 
 ## Docker
 
-comands to create docker for the aplication
+Commands to create docker for the application
 
-convert the wvnw file in executables
+Convert the wvnw file in executables
+
 ```
 chmod ugo+x mvnw
 ```
-create the .jar file and run (complete the environment variables)
+
+Create the .jar file and run (complete the environment variables)
+
 ```
 ./mvnw package -DskipTests
 
@@ -77,7 +82,7 @@ COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 ```
 
-create container
+Create container
 
 ```
 docker build -t ot297-0.1.0 .
@@ -120,16 +125,14 @@ services:
       TEMPLATE_ID_CONTACT:
 ```
 
-run containers
+Run containers
 
 ```
 docker-compose up -d
 ```
-stop containers
+
+Stop containers
 
 ```
 docker-compose down
 ```
-
-
-
