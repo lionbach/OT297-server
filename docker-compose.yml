@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:8.0.31
+    # command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+    - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: g297
+  aap:
+    image: ot297-0.1.0
+    ports:
+      - 8080:8080
+    #volumes:
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/g297
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_INITIALIZATION-MODE: always
+      SPRING_DATASOURCE_DRIVER-CLASS-NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_HIBERNATE_DDL-AUTO: update
+      ORGANIZATION_ID:
+      S3_ACCESS_KEY:
+      S3_BUCKET:
+      S3_ENDPOINT:
+      S3_REGION:
+      S3_SECRET_KEY:
+      SENDGRID_API_KEY:
+      TEMPLATE_ID:
+      TEMPLATE_ID_CONTACT:
