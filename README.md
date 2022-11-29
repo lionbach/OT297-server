@@ -47,7 +47,7 @@ jon-email@gmail.com
 
 comands to create docker for the aplication
 
-convert the wvnw file in executables
+convert the wvnw file in executables (only for linux. In windows use mvnw.cmd file)
 ```
 chmod ugo+x mvnw
 ```

@@ -10,7 +10,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: g297
   aap:
-    image: ot297-0.1.0
+    image: ot297server
     ports:
       - 8080:8080
     #volumes:
