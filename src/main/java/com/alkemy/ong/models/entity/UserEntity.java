@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "user")
+@Table(name = "user_list")
 @SQLDelete(sql = "UPDATE user SET soft_delete = true where id=?")
 @Where(clause = "soft_delete=false")
 @Embeddable
