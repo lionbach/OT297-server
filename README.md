@@ -80,7 +80,7 @@ jon-email@gmail.com
 
 ## Enviranment variables
 
-Para que el proyecto funcione, deben estar definidas las siguientes variables de entorno:
+For the project to work, the following environment variables must be defined
 
 DB_PASS=
 
