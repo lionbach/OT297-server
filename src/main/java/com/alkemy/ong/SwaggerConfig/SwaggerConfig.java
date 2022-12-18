@@ -34,12 +34,12 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
                 "ONG OT297 API",
-                "ONG OT297 API",
+                "API developed for Alkemy Aceleration by Guillermo Pintos, Juan Ignacio Otturi and Luis Leonardo Mumbach, with Francisco Mastucci as project mentor. This fork is maintained by Luis Leonardo Mumbach.",
                 "0.0.1-SNAPSHOT",
-                "https://github.com/alkemyTech/OT297-server",
-                new Contact("Alkemy", "https://www.alkemy.org/", "somosmasong250@gmail.com"),
+                "https://github.com/lionbach/OT297-server",
+                new Contact("Luis Leonardo Mumbach", "https://github.com/lionbach", "leomumbach@gmail.com"),
                 "License of API",
-                "https://github.com/alkemyTech/OT297-server",
+                "https://github.com/lionbach/OT297-server",
                 Collections.emptyList());
         return apiInfo;
     }
